@@ -1,0 +1,60 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="inner">
+      <span class="brand">Nudgy</span>
+      <span class="sep">·</span>
+      <span class="credit">Made by Pragmatic Labs</span>
+      <span class="sep">·</span>
+      <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer" class="link">
+        GitHub
+      </a>
+      <span class="sep">·</span>
+      <span class="year">{year}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .brand {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .sep {
+    color: #333;
+  }
+
+  .link {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .link:hover {
+    color: var(--text);
+  }
+</style>

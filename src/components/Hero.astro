@@ -1,0 +1,123 @@
+---
+---
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">Mac App · Free · No Account Required</div>
+    <h1>
+      Annotate Screenshots.<br />
+      <span class="accent">Ship Faster.</span>
+    </h1>
+    <p class="subheadline">
+      Capture any part of your screen, annotate it with arrows, shapes, and text,
+      then save it locally — all in seconds. Built for developers who move fast.
+    </p>
+    <div class="cta-group">
+      <a href="#download" class="btn-primary">
+        Download for Mac — Free
+      </a>
+      <span class="cta-note">macOS 13.0 or later</span>
+    </div>
+  </div>
+
+  <!-- Subtle radial glow -->
+  <div class="glow" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 6rem 1.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .cta-note {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 106, 255, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+</style>
