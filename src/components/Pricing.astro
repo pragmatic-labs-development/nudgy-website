@@ -28,7 +28,7 @@ const tiers = [
       { text: 'Unlimited screenshots', included: true },
       { text: 'Full annotation tools', included: true },
       { text: 'Save locally (unlimited)', included: true },
-      { text: '5 expiring links / month (24h)', included: true },
+      { text: '5 links / month (24 Hour Expiration)', included: true },
       { text: '5 animated GIFs / month (watermarked)', included: true },
       { text: 'Cloud storage', included: false },
       { text: 'Always latest version', included: true },
@@ -98,7 +98,7 @@ const tiers = [
               )}
             </div>
             {!!tier.price.annualTotal && (
-              <p class="price-note" data-monthly={`Save ${tier.price.savings}% by switching to yearly`} data-annual={`billed as $${tier.price.annualTotal}/year`}>
+              <p class="price-note" data-monthly={`Save ${tier.price.savings}% by switching to annual`} data-annual={`billed as $${tier.price.annualTotal}/year`}>
                 billed as ${tier.price.annualTotal}/year
               </p>
             )}
