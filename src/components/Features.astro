@@ -33,7 +33,7 @@ const features = [
 ];
 ---
 
-<section class="features">
+<section class="features" id="features-section">
   <div class="container">
     <div class="section-header">
       <p class="eyebrow">Features</p>
@@ -44,7 +44,9 @@ const features = [
     <div class="grid">
       {features.map((f) => (
         <div class="card">
-          <div class="icon" set:html={f.icon} />
+          <div class="icon-wrap">
+            <div class="icon" set:html={f.icon} />
+          </div>
           <h3>{f.title}</h3>
           <p>{f.description}</p>
         </div>
@@ -115,14 +117,32 @@ const features = [
     background: var(--surface-hover);
   }
 
+  .icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(255, 107, 43, 0.07);
+    border: 1px solid rgba(255, 107, 43, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.1rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .card:hover .icon-wrap {
+    background: rgba(255, 107, 43, 0.12);
+    border-color: rgba(255, 107, 43, 0.28);
+  }
+
   .icon {
     color: var(--accent);
-    margin-bottom: 1rem;
+    display: flex;
     transition: filter 0.2s;
   }
 
   .card:hover .icon {
-    filter: drop-shadow(0 0 6px rgba(255, 107, 43, 0.5));
+    filter: drop-shadow(0 0 5px rgba(255, 107, 43, 0.5));
   }
 
   .card h3 {
