@@ -15,6 +15,11 @@
 
 html { scroll-behavior: smooth; }
 
+::selection {
+  background: rgba(255, 107, 43, 0.25);
+  color: #fff;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

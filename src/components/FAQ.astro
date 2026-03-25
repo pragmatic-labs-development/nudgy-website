@@ -1,0 +1,198 @@
+---
+const faqs = [
+  {
+    q: "Can I use this for vibe coding?",
+    a: `Absolutely. Nudgy was basically built for vibe coding sessions.
+
+When you're deep in a flow with Claude or Cursor, being able to capture your screen, circle the thing that's broken, and paste it straight into the chat is a superpower. No descriptions, no misunderstandings. Just point at the problem.
+
+Vibe coding moves fast. Nudgy keeps up.`,
+  },
+  {
+    q: "Will AI like getting annotated screenshots, or is it a bit too much?",
+    a: `Absolutely. A picture with a red arrow is worth a thousand words of "it's the thing in the top left... no, not that one, the other one."
+
+Annotated screenshots are the highest signal-to-noise input you can give an AI. You're pointing at exactly what you mean. No ambiguity, no back-and-forth.
+
+Nudgy is a perfect AI collaboration tool. Show your AI exactly what you mean.`,
+  },
+  {
+    q: "Why not just use macOS's built-in screenshot tools?",
+    a: `macOS is great at capturing. But the moment you need to circle something, draw an arrow, or write "THIS" next to a bug, you're opening another app and losing your flow.
+
+Nudgy keeps you in the zone. Capture, annotate, copy, done. No context switching, no friction.`,
+  },
+  {
+    q: "Is my data actually private?",
+    a: `Completely. Nudgy runs entirely on your Mac. No server, no account, no analytics. Your screenshots never leave your machine.
+
+We literally have no way to see them even if we wanted to.`,
+  },
+  {
+    q: "How fast is it really?",
+    a: `From shortcut to annotated screenshot in your clipboard: under 10 seconds if you're taking your time. The global shortcut means you never have to leave whatever you're working on.
+
+Capture. Annotate. Paste. Done.`,
+  },
+  {
+    q: "Who is Nudgy for?",
+    a: `Anyone who communicates visually: teammates, clients, or AI tools.
+
+If you've ever typed three paragraphs trying to describe something you could have just circled, Nudgy is for you.`,
+  },
+];
+---
+
+<section class="faq">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">For Humans and AI</p>
+      <h2 class="heading">FAQ</h2>
+    </div>
+
+    <div class="list">
+      {faqs.map((item) => (
+        <details class="item">
+          <summary class="question">
+            <span>{item.q}</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="answer">
+            <div class="answer-inner">
+              {item.a.split('\n\n').map((para) => (
+                <p>{para}</p>
+              ))}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('details.item').forEach(details => {
+    const summary = details.querySelector('summary')!;
+    const answer = details.querySelector<HTMLElement>('.answer')!;
+
+    summary.addEventListener('click', e => {
+      e.preventDefault();
+      if (details.open) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        requestAnimationFrame(() => { answer.style.maxHeight = '0'; });
+        answer.addEventListener('transitionend', () => { details.open = false; }, { once: true });
+      } else {
+        details.open = true;
+        answer.style.maxHeight = '0';
+        requestAnimationFrame(() => { answer.style.maxHeight = answer.scrollHeight + 'px'; });
+        answer.addEventListener('transitionend', () => { answer.style.maxHeight = ''; }, { once: true });
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    padding: 5rem 1.5rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .heading {
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    color: var(--text);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    border-top: 1px solid var(--border);
+  }
+
+  .item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .question::-webkit-details-marker { display: none; }
+
+  .question:hover {
+    color: var(--accent);
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .item[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .item[open] .question {
+    color: var(--accent);
+  }
+
+  .answer {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .item[open] .answer {
+    max-height: 600px;
+  }
+
+  .answer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .answer p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+</style>
