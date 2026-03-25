@@ -2,122 +2,210 @@
 ---
 
 <section class="hero">
-  <div class="hero-content">
-    <div class="badge">Mac App · Free · No Account Required</div>
+
+  <!-- Background glow — behind everything -->
+  <div class="bg-beam" aria-hidden="true"></div>
+
+  <!-- Left: text -->
+  <div class="hero-text">
+    <div class="badge">
+      <span class="badge-dot" aria-hidden="true"></span>
+      Mac App · Free · No Account Required
+    </div>
+
     <h1>
       Annotate Screenshots.<br />
       <span class="accent">Ship Faster.</span>
     </h1>
+
     <p class="subheadline">
-      Capture any part of your screen, annotate it with arrows, shapes, and text,
-      then save it locally — all in seconds. Built for developers who move fast.
+      Capture any part of your screen, annotate it with arrows,
+      shapes, and text, then save it locally — all in seconds.
+      Built for developers who move fast.
     </p>
+
     <div class="cta-group">
       <a href="#download" class="btn-primary">
         Download for Mac — Free
       </a>
-      <span class="cta-note">macOS 13.0 or later</span>
+      <span class="cta-note">macOS 13.0 or later · Apple Silicon &amp; Intel</span>
     </div>
   </div>
 
-  <!-- Subtle radial glow -->
-  <div class="glow" aria-hidden="true"></div>
+  <!-- Right: mascot -->
+  <div class="mascot-col">
+    <img src="/assets/nudger.png" alt="Nudgy mascot" class="mascot" />
+  </div>
+
 </section>
 
 <style>
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── Layout ── */
   .hero {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     min-height: 100vh;
-    padding: 6rem 1.5rem;
-    text-align: center;
+    align-items: start;
+    padding-top: 12vh;
     overflow: hidden;
   }
 
-  .hero-content {
+  /* ── Glow — truly behind grid items ── */
+  .bg-beam {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140vw;
+    height: 120vh;
+    background: radial-gradient(ellipse at top center,
+      rgba(200, 75, 15, 0.55) 0%,
+      rgba(180, 55, 10, 0.2) 35%,
+      transparent 60%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Left column ── */
+  .hero-text {
     position: relative;
     z-index: 1;
-    max-width: 720px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 clamp(1.5rem, 3vw, 3rem) 3rem clamp(2rem, 5vw, 5rem);
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     padding: 0.35rem 0.9rem;
     border-radius: 9999px;
-    border: 1px solid var(--border);
-    background: var(--surface);
+    border: 1px solid rgba(255, 107, 43, 0.2);
+    background: rgba(255, 107, 43, 0.05);
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
-    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+    animation: fadeUp 0.7s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    flex-shrink: 0;
   }
 
   h1 {
-    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    font-size: clamp(2rem, 3.8vw, 3.8rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
     color: var(--text);
     margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .accent {
-    color: var(--accent);
+    background: linear-gradient(135deg, #FF6B2B 0%, #FFAA6B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .subheadline {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-size: clamp(0.88rem, 1.3vw, 1rem);
     color: var(--muted);
-    line-height: 1.7;
-    max-width: 540px;
-    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .cta-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
+    animation: fadeUp 0.7s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 2rem;
+    padding: 0.8rem 2rem;
     border-radius: 10px;
     background: var(--accent);
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    letter-spacing: -0.01em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   }
 
   .btn-primary:hover {
     background: var(--accent-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px var(--accent-glow-strong);
   }
 
   .cta-note {
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
   }
 
-  .glow {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(124, 106, 255, 0.12) 0%, transparent 70%);
-    pointer-events: none;
+  /* ── Right column ── */
+  .mascot-col {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: visible;
+    animation: fadeIn 1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .mascot {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: translateX(-8%);
+    mix-blend-mode: multiply;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 680px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-text {
+      padding: 3.5rem 1.5rem 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+    .badge, .subheadline { margin-left: auto; margin-right: auto; }
+    .cta-group { align-items: center; }
+    .mascot { transform: none; width: 80%; }
+    .mascot-col { justify-content: center; min-height: 55vw; }
   }
 </style>
