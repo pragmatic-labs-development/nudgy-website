@@ -19,7 +19,7 @@ const tiers = [
   },
   {
     name: 'Pro',
-    price: { monthly: 4, annualMonthly: 1.99, annualTotal: 23.88 },
+    price: { monthly: 4, annualMonthly: 1.99, annualTotal: 23.88, savings: 50 },
     description: 'For individuals who move fast.',
     cta: 'Get Early Access',
     ctaHref: '#',
@@ -36,7 +36,7 @@ const tiers = [
   },
   {
     name: 'Pro+',
-    price: { monthly: 9, annualMonthly: 3.99, annualTotal: 48 },
+    price: { monthly: 9, annualMonthly: 3.99, annualTotal: 48, savings: 55 },
     description: 'For power users and teams.',
     cta: 'Get Early Access',
     ctaHref: '#',
@@ -98,8 +98,8 @@ const tiers = [
               )}
             </div>
             {!!tier.price.annualTotal && (
-              <p class="price-note" data-monthly={`or $${tier.price.annualTotal}/year`} data-annual={`billed as $${tier.price.annualTotal}/year`}>
-                or ${tier.price.annualTotal}/year
+              <p class="price-note" data-monthly={`Save ${tier.price.savings}% by switching to yearly`} data-annual={`billed as $${tier.price.annualTotal}/year`}>
+                billed as ${tier.price.annualTotal}/year
               </p>
             )}
           </div>
