@@ -4,21 +4,19 @@
 <section id="download" class="download">
   <div class="container">
     <div class="card">
-      <div class="coming-soon-badge">Coming Soon</div>
-
       <h2>Download Nudgy</h2>
       <p class="subtitle">
         Free to download. No account, no subscription, no nonsense.
       </p>
 
-      <button class="btn-download" disabled>
+      <a href="https://github.com/pragmatic-labs-development/nudgy/releases/latest/download/Nudgy-0.1.0.dmg" class="btn-download" download>
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
           <polyline points="7 10 12 15 17 10"/>
           <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
         Download .dmg
-      </button>
+      </a>
 
       <div class="requirements">
         <div class="req-item">
@@ -100,11 +98,16 @@
     color: #fff;
     font-size: 0.9rem;
     font-weight: 600;
-    border: none;
-    cursor: not-allowed;
-    opacity: 0.3;
+    text-decoration: none;
+    cursor: pointer;
     margin-bottom: 2rem;
     letter-spacing: -0.01em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-download:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
   }
 
   .requirements {
