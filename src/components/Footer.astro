@@ -4,58 +4,271 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container">
-    <div class="inner">
-      <span class="brand">Nudgy</span>
-      <span class="sep">·</span>
-      <span class="credit">Made by Pragmatic Labs</span>
-      <span class="sep">·</span>
-      <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer" class="link">
-        GitHub
-      </a>
-      <span class="sep">·</span>
-      <span class="year">{year}</span>
+    <div class="top">
+      <!-- Brand column -->
+      <div class="brand-col">
+        <a href="/" class="wordmark">
+          <svg width="22" height="22" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true">
+            <path d="M291.2 388.4c31.2-18.8 64.7-36.4 101.1-36.4l55.7 0c4.6 0 9.1-.2 13.6-.7l85.3 121.9c4 5.7 11.3 8.2 17.9 6.1s11.2-8.3 11.2-15.3l0-240c0-70.7-57.3-128-128-128l-55.7 0c-36.4 0-69.9-17.6-101.1-36.4C262.3 42.1 228.3 32 192 32C86 32 0 118 0 224c0 71.1 38.6 133.1 96 166.3L96 456c0 13.3 10.7 24 24 24s24-10.7 24-24l0-46c15.3 3.9 31.4 6 48 6c5.4 0 10.7-.2 16-.7l0 40.7c0 13.3 10.7 24 24 24s24-10.7 24-24l0-50.9c12.4-4.4 24.2-10 35.2-16.7zM448 200a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+          </svg>
+          Nudgy
+        </a>
+        <p class="tagline">Annotate screenshots. Ship faster.</p>
+        <span class="badge">Mac App &middot; Free &middot; No Account Required</span>
+        <div class="socials">
+          <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <div class="nav-cols">
+        <div class="nav-col">
+          <span class="col-heading">Product</span>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <!-- Company column — commented out for now
+        <div class="nav-col">
+          <span class="col-heading">Company</span>
+          <ul>
+            <li><span class="plain">Pragmatic Labs</span></li>
+            <li>
+              <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+        -->
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span class="copy">&copy; {year} Pragmatic Labs. All rights reserved.</span>
+      <div class="legal">
+        <a href="#">Privacy Policy</a>
+        <span class="dot">&middot;</span>
+        <a href="#">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding: 2.5rem 1.5rem;
     border-top: 1px solid var(--border);
+    background: var(--bg);
+    position: relative;
+  }
+
+  /* Subtle orange glow along the top border */
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
   }
 
   .container {
-    max-width: 960px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 4rem 1.5rem 2rem;
   }
 
-  .inner {
+  /* Top section: brand + nav columns */
+  .top {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    font-size: 0.8rem;
-    color: var(--muted);
+    justify-content: space-between;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
   }
 
-  .brand {
+  /* Brand column */
+  .brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 240px;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text);
+    text-decoration: none;
     letter-spacing: -0.02em;
+    transition: opacity 0.2s;
+    width: fit-content;
   }
 
-  .sep {
-    color: #3a3a3a;
+  .wordmark svg {
+    color: var(--accent);
+    flex-shrink: 0;
   }
 
-  .link {
+  .wordmark:hover {
+    opacity: 0.8;
+  }
+
+  .tagline {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.01em;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 100px;
+    padding: 0.25rem 0.7rem;
+    width: fit-content;
+  }
+
+  .socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .social-link {
     color: var(--muted);
     text-decoration: none;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
   }
 
-  .link:hover {
+  .social-link:hover {
     color: var(--text);
+  }
+
+  /* Nav columns */
+  .nav-cols {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .col-heading {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .nav-col a {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-col a:hover {
+    color: var(--text);
+  }
+
+  .plain {
+    font-size: 0.82rem;
+    color: #444;
+    letter-spacing: -0.01em;
+  }
+
+  /* Bottom bar */
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.75rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .copy {
+    font-size: 0.75rem;
+    color: #444;
+    letter-spacing: -0.01em;
+  }
+
+  .legal {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .legal a {
+    font-size: 0.75rem;
+    color: #444;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+
+  .legal a:hover {
+    color: var(--muted);
+  }
+
+  .dot {
+    color: #2a2a2a;
+    font-size: 0.75rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .top {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .brand-col {
+      max-width: 100%;
+    }
+
+    .nav-cols {
+      gap: 2.5rem;
+    }
+
+    .bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
   }
 </style>
