@@ -18,6 +18,8 @@
         Download .dmg
       </a>
 
+      <p class="disclaimer">By downloading, you agree to our <a href="/terms">Terms of Use</a>. Provided as-is with no warranty.</p>
+
       <div class="requirements">
         <div class="req-item">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -129,5 +131,23 @@
     color: var(--accent);
     opacity: 0.5;
     flex-shrink: 0;
+  }
+
+  .disclaimer {
+    color: #3a3a3a;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .disclaimer a {
+    color: #555;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .disclaimer a:hover {
+    color: var(--muted);
   }
 </style>

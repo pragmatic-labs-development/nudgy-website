@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Privacy Policy — Nudgy" description="Nudgy privacy policy. Nudgy runs entirely on your device and collects no personal data.">
+  <Nav />
+  <main class="legal-page">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: April 6, 2025</p>
+
+      <section>
+        <h2>The short version</h2>
+        <p>Nudgy runs entirely on your Mac. We collect no personal data, no analytics, and nothing ever leaves your device.</p>
+      </section>
+
+      <section>
+        <h2>What we collect</h2>
+        <p>Nothing. Nudgy does not collect, transmit, or store any personal information. Specifically:</p>
+        <ul>
+          <li>No usage analytics or telemetry</li>
+          <li>No crash reports sent to any server</li>
+          <li>No account registration or login required</li>
+          <li>No identifiers, device info, or IP addresses are recorded</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Screen recording permission</h2>
+        <p>Nudgy requests macOS Screen Recording permission to capture your screen when you invoke it. This permission is granted by you through macOS System Settings and is used solely to take screenshots on your device. Screenshots are processed locally and are never uploaded anywhere.</p>
+      </section>
+
+      <section>
+        <h2>Screenshots and annotations</h2>
+        <p>All screenshots you capture and annotations you create are stored locally on your Mac in the location you choose (Downloads folder by default). Nudgy does not have access to any cloud storage and does not upload files to any server.</p>
+      </section>
+
+      <section>
+        <h2>Downloads</h2>
+        <p>The Nudgy .dmg installer is hosted on Cloudflare R2. When you download it, Cloudflare may log standard server access information (IP address, timestamp) per their own privacy policy. We do not receive or retain this data.</p>
+      </section>
+
+      <section>
+        <h2>Third-party services</h2>
+        <p>This marketing website (get-nudged.online) does not use any third-party analytics, tracking pixels, or advertising scripts.</p>
+      </section>
+
+      <section>
+        <h2>Changes to this policy</h2>
+        <p>If we ever make material changes to this policy (for example, if a future version of Nudgy adds optional cloud features), we will update this page and note the date above.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions? Open an issue on <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal-page {
+    min-height: 100vh;
+    padding: 8rem 1.5rem 6rem;
+  }
+
+  .container {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .updated {
+    font-size: 0.78rem;
+    color: #444;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+
+  p, li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  ul {
+    margin: 0.5rem 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+</style>

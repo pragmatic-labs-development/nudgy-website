@@ -29,13 +29,16 @@
         Download for Mac · Free
       </a>
       <span class="cta-note">macOS 13.0 or later · Apple Silicon &amp; Intel</span>
+      <span class="disclaimer">By downloading, you agree to our <a href="/terms">Terms of Use</a>. Provided as-is with no warranty.</span>
     </div>
   </div>
 
-  <!-- Right: mascot -->
+  <!-- Right: mascot (shelved for now) -->
+  <!--
   <div class="mascot-col">
     <img src="/assets/kiwi-mascot.png" alt="Nudgy mascot" class="mascot" />
   </div>
+  -->
 
   <!-- Scroll cue -->
   <a href="#features-section" class="scroll-cue" aria-label="Scroll to features">
@@ -198,6 +201,24 @@
     letter-spacing: 0.01em;
   }
 
+  .disclaimer {
+    color: #3a3a3a;
+    font-size: 0.68rem;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  .disclaimer a {
+    color: #555;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .disclaimer a:hover {
+    color: var(--muted);
+  }
+
   /* ── Right column ── */
   .mascot-col {
     position: relative;
@@ -226,9 +247,9 @@
   .mascot {
     position: relative;
     z-index: 1;
-    max-height: 86vh;
+    max-height: 105vh;
     width: auto;
-    max-width: 100%;
+    max-width: 110%;
     display: block;
     transform: translateX(-14%) translateY(5vh);
     filter: drop-shadow(0 24px 48px rgba(255, 107, 43, 0.22)) drop-shadow(0 4px 16px rgba(0,0,0,0.5));

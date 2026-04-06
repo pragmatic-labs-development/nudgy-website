@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Terms of Use — Nudgy" description="Terms of use for Nudgy, a free Mac screenshot annotation tool. Download and use at your own risk.">
+  <Nav />
+  <main class="legal-page">
+    <div class="container">
+      <h1>Terms of Use</h1>
+      <p class="updated">Last updated: April 6, 2025</p>
+
+      <section>
+        <h2>Acceptance</h2>
+        <p>By downloading or using Nudgy, you agree to these terms. If you do not agree, do not download or use the software.</p>
+      </section>
+
+      <section>
+        <h2>License</h2>
+        <p>Nudgy is free software. You are granted a personal, non-exclusive, non-transferable license to download and use Nudgy on your own Mac for personal or professional purposes. You may not redistribute, sell, sublicense, or reverse-engineer the software.</p>
+      </section>
+
+      <section>
+        <h2>Provided as-is — no warranty</h2>
+        <p>Nudgy is provided <strong>"as-is"</strong> and <strong>"as available"</strong> without warranty of any kind, express or implied. This includes, but is not limited to, implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+        <p>We do not warrant that Nudgy will be error-free, uninterrupted, or compatible with every version of macOS.</p>
+      </section>
+
+      <section>
+        <h2>Use at your own risk</h2>
+        <p>You download and use Nudgy entirely at your own risk. In particular:</p>
+        <ul>
+          <li>Nudgy is <strong>not distributed through the Mac App Store</strong> and is self-signed. macOS may display a Gatekeeper security prompt when you open it for the first time. This is expected behavior for independently distributed Mac apps.</li>
+          <li>Nudgy requires the <strong>Screen Recording</strong> permission, which you grant voluntarily through macOS System Settings. You are responsible for understanding the implications of granting this permission.</li>
+          <li>You are responsible for the content of any screenshots you capture and share.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Limitation of liability</h2>
+        <p>To the fullest extent permitted by law, Pragmatic Labs and its contributors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or device damage, arising from your use of or inability to use Nudgy — even if advised of the possibility of such damages.</p>
+      </section>
+
+      <section>
+        <h2>Your responsibilities</h2>
+        <p>You are solely responsible for:</p>
+        <ul>
+          <li>Ensuring your use of Nudgy complies with any policies set by your employer or organization</li>
+          <li>The content of screenshots you capture, annotate, and share</li>
+          <li>Keeping your copy of Nudgy up to date</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Changes</h2>
+        <p>We may update these terms from time to time. Continued use of Nudgy after changes are posted constitutes your acceptance of the updated terms. The "last updated" date at the top of this page reflects the most recent revision.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions? Open an issue on <a href="https://github.com/pragmatic-labs-development/nudgy" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal-page {
+    min-height: 100vh;
+    padding: 8rem 1.5rem 6rem;
+  }
+
+  .container {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .updated {
+    font-size: 0.78rem;
+    color: #444;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+
+  p, li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  ul {
+    margin: 0.5rem 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+</style>
