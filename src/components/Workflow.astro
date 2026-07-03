@@ -1,0 +1,348 @@
+---
+const steps = [
+  {
+    number: '1',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
+    title: 'Capture',
+    description: 'Hit the global shortcut from anywhere. Select a region or grab the full screen. Nudgy stays out of your way until you need it.',
+  },
+  {
+    number: '2',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+    title: 'Annotate',
+    description: 'Circle the bug. Arrow to the broken layout. Write "THIS" next to the thing that needs fixing. Mark what matters in seconds.',
+  },
+  {
+    number: '3',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    title: 'Paste into AI',
+    description: 'Drop the annotated screenshot straight into Claude, ChatGPT, Cursor, or any AI tool. Your AI sees exactly what you see.',
+  },
+];
+---
+
+<section class="workflow" id="workflow">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps. Zero friction.</h2>
+      <p class="subtext">From screen to AI in under 10 seconds. No context switching, no describing what you see in three paragraphs.</p>
+    </div>
+
+    <div class="steps">
+      {steps.map((step, i) => (
+        <div class="step">
+          <div class="step-number">{step.number}</div>
+          <div class="step-icon" set:html={step.icon} />
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+          {i < steps.length - 1 && (
+            <div class="step-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Before / After comparison -->
+    <div class="comparison">
+      <div class="compare-card compare-before">
+        <div class="compare-label">Without Nudgy</div>
+        <div class="compare-content">
+          <p class="compare-text">"The button in the top right of the settings panel — no, not that one, the one below the toggle, next to the dropdown — it's misaligned by a few pixels and the hover state is wrong. The color should be the same orange as the header but it looks more like salmon..."</p>
+          <span class="compare-verdict">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Slow, vague, frustrating
+          </span>
+        </div>
+      </div>
+      <div class="compare-card compare-after">
+        <div class="compare-label">With Nudgy</div>
+        <div class="compare-content">
+          <div class="compare-visual">
+            <div class="mock-screenshot">
+              <div class="mock-annotation">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              </div>
+              <div class="mock-arrow" aria-hidden="true"></div>
+              <span class="mock-label">Fix this color</span>
+            </div>
+          </div>
+          <span class="compare-verdict compare-verdict--good">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Instant, clear, visual
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow {
+    padding: 6rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+    color: var(--text);
+  }
+
+  .subtext {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Steps ── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 5rem;
+    position: relative;
+  }
+
+  .step {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .step:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255, 107, 43, 0.15);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(255, 107, 43, 0.3);
+  }
+
+  .step-icon {
+    color: var(--accent);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+
+  .step p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .step-connector {
+    display: none;
+    position: absolute;
+    right: -1.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border);
+  }
+
+  @media (min-width: 769px) {
+    .step-connector {
+      display: block;
+    }
+  }
+
+  /* ── Comparison ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .compare-card {
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .compare-label {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-before .compare-label {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--muted);
+  }
+
+  .compare-after .compare-label {
+    background: rgba(255, 107, 43, 0.06);
+    color: var(--accent);
+  }
+
+  .compare-content {
+    padding: 1.5rem 1.25rem;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 180px;
+    justify-content: space-between;
+  }
+
+  .compare-text {
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .compare-verdict {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .compare-verdict--good {
+    color: var(--accent);
+  }
+
+  .compare-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mock-screenshot {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mock-annotation {
+    color: var(--accent);
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    animation: pulseDot 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 43, 0); }
+    50%       { box-shadow: 0 0 0 4px rgba(255, 107, 43, 0.3); }
+  }
+
+  .mock-arrow {
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    transform: rotate(-15deg);
+  }
+
+  .mock-arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    border: 4px solid transparent;
+    border-left-color: var(--accent);
+  }
+
+  .mock-label {
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(255, 107, 43, 0.1);
+    border: 1px solid rgba(255, 107, 43, 0.25);
+    border-radius: 4px;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .compare-after .compare-content {
+    border-left: 2px solid rgba(255, 107, 43, 0.2);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .comparison {
+      grid-template-columns: 1fr;
+    }
+
+    .workflow {
+      padding: 4rem 1.25rem;
+    }
+  }
+</style>
