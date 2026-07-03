@@ -1,0 +1,163 @@
+---
+const points = [
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+    title: 'No cloud required',
+    description: 'Screenshots are saved to your Mac. Nothing is uploaded anywhere unless you explicitly choose to share.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="17" y1="11" x2="23" y2="11"/></svg>`,
+    title: 'No account needed',
+    description: 'Download it, use it. No sign-up, no login, no email verification. Just a tool that works.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: 'Built for sensitive work',
+    description: 'Annotating proprietary UI, internal tools, or client work? Your screenshots stay on your machine. We can\'t see them even if we wanted to.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    title: 'No analytics or tracking',
+    description: 'We don\'t track usage, collect telemetry, or phone home. The app runs entirely offline.',
+  },
+];
+---
+
+<section class="privacy-section" id="privacy">
+  <div class="container">
+    <div class="content-wrap">
+      <div class="text-col">
+        <p class="eyebrow">Privacy-first</p>
+        <h2>Your screenshots.<br />Your machine.<br /><span class="accent">Nobody else's.</span></h2>
+        <p class="lead">In an era of cloud-everything and AI-everywhere, Nudgy takes the opposite approach. Your visual context stays local by default. No surprises.</p>
+      </div>
+
+      <div class="points-col">
+        {points.map((point) => (
+          <div class="point">
+            <div class="point-icon" set:html={point.icon} />
+            <div class="point-text">
+              <h3>{point.title}</h3>
+              <p>{point.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .privacy-section {
+    padding: 6rem 1.5rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .content-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .text-col h2 {
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #FF6B2B 0%, #FFAA6B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .lead {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 340px;
+  }
+
+  .points-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .point:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255, 107, 43, 0.12);
+  }
+
+  .point-icon {
+    color: var(--accent);
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .point-text h3 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  .point-text p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrap {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .text-col {
+      text-align: center;
+    }
+
+    .lead {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .privacy-section {
+      padding: 4rem 1.25rem;
+    }
+  }
+</style>

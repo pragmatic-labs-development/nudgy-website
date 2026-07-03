@@ -10,26 +10,48 @@
   <div class="hero-text">
     <div class="badge">
       <span class="badge-dot" aria-hidden="true"></span>
-      Mac App · Free · No Account Required
+      The AI-first screenshot tool
     </div>
 
     <h1>
-      Annotate Screenshots.<br />
-      <span class="accent">Ship Faster.</span>
+      Show the thing.<br />
+      <span class="accent">Skip the essay.</span>
     </h1>
 
     <p class="subheadline">
-      Capture any part of your screen, annotate it with arrows,
-      shapes, and text, then save it locally. All in seconds.
-      Built for anyone who moves fast.
+      Nudgy helps vibe coders and tech teams capture screenshots, mark what matters,
+      and paste visual context into Claude, ChatGPT, Cursor, Slack, Jira, or wherever work happens.
     </p>
 
+    <p class="tagline">Less explaining. Less busywork. Faster building.</p>
+
     <div class="cta-group">
-      <a href="https://pub-b7c088e1d92b4658b0f591ae9c5d8b2e.r2.dev/Nudgy-0.1.0.dmg" class="btn-primary" download>
-        Download for Mac · Free
-      </a>
+      <div class="cta-buttons">
+        <a href="https://pub-b7c088e1d92b4658b0f591ae9c5d8b2e.r2.dev/Nudgy-0.1.0.dmg" class="btn-primary" download>
+          Download for Mac · Free
+        </a>
+        <a href="#workflow" class="btn-secondary">
+          See how it works
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </a>
+      </div>
       <span class="cta-note">macOS 13.0 or later · Apple Silicon &amp; Intel</span>
       <span class="disclaimer">By downloading, you agree to our <a href="/terms">Terms of Use</a>. Provided as-is with no warranty.</span>
+    </div>
+
+    <!-- Tool logos strip -->
+    <div class="tool-strip">
+      <span class="tool-strip-label">Paste into</span>
+      <div class="tool-chips">
+        <span class="tool-chip">Claude</span>
+        <span class="tool-chip">ChatGPT</span>
+        <span class="tool-chip">Cursor</span>
+        <span class="tool-chip">Slack</span>
+        <span class="tool-chip">Linear</span>
+        <span class="tool-chip">GitHub</span>
+      </div>
     </div>
   </div>
 
@@ -39,7 +61,7 @@
   </div>
 
   <!-- Scroll cue -->
-  <a href="#features-section" class="scroll-cue" aria-label="Scroll to features">
+  <a href="#workflow" class="scroll-cue" aria-label="Scroll to workflow">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
@@ -74,7 +96,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
+    min-height: auto;
     align-items: start;
     padding-top: 5vh;
     overflow: hidden;
@@ -104,7 +126,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 14vh clamp(1.5rem, 3vw, 3rem) 3rem clamp(4rem, 9vw, 9rem);
+    padding: 14vh clamp(1.5rem, 3vw, 3rem) 3rem clamp(3rem, 7vw, 7rem);
   }
 
   .badge {
@@ -151,12 +173,21 @@
   }
 
   .subheadline {
-    font-size: clamp(0.88rem, 1.3vw, 1rem);
+    font-size: clamp(0.88rem, 1.3vw, 1.05rem);
     color: var(--muted);
     line-height: 1.8;
-    max-width: 380px;
-    margin-bottom: 2.5rem;
+    max-width: 420px;
+    margin-bottom: 1rem;
     animation: fadeUp 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tagline {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .cta-group {
@@ -167,22 +198,27 @@
     animation: fadeUp 0.7s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  .cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.8rem 2rem;
+    padding: 0.7rem 1.75rem;
     border-radius: 10px;
     background: var(--accent);
     color: #fff;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
     letter-spacing: -0.01em;
+    white-space: nowrap;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  }
-
-  .btn-primary {
     animation: pulseGlow 3.5s 1.5s ease-in-out infinite;
   }
 
@@ -191,6 +227,38 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 36px var(--accent-glow-strong);
     animation: none;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255, 107, 43, 0.3);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary svg {
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-secondary:hover svg {
+    transform: translateY(2px);
   }
 
   .cta-note {
@@ -215,6 +283,46 @@
 
   .disclaimer a:hover {
     color: var(--muted);
+  }
+
+  /* ── Tool strip ── */
+  .tool-strip {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    animation: fadeUp 0.7s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tool-strip-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tool-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tool-chip {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.01em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tool-chip:hover {
+    border-color: rgba(255, 107, 43, 0.2);
+    color: var(--text);
   }
 
   /* ── Right column ── */
@@ -255,10 +363,9 @@
 
   /* ── Scroll cue ── */
   .scroll-cue {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 1.5rem 0 2rem;
     z-index: 2;
     color: var(--muted);
     text-decoration: none;
@@ -283,8 +390,12 @@
     .subheadline {
       max-width: 100%;
     }
-    .badge, .subheadline { margin-left: auto; margin-right: auto; }
+    .badge, .subheadline, .tagline { margin-left: auto; margin-right: auto; }
     .cta-group { align-items: center; }
+    .cta-buttons { flex-direction: column; width: 100%; flex-wrap: nowrap; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; white-space: nowrap; }
+    .tool-strip { align-items: center; }
+    .tool-chips { justify-content: center; }
     .mascot { transform: none; width: 70%; max-height: 50vh; }
     .mascot-col { justify-content: center; min-height: auto; padding: 1rem 0 3rem; }
     .scroll-cue { display: none; }

@@ -1,0 +1,271 @@
+---
+const steps = [
+  {
+    number: '1',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
+    title: 'Capture the thing',
+    description: 'Grab a region, window, or screen the moment you see something worth explaining.',
+  },
+  {
+    number: '2',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+    title: 'Mark what matters',
+    description: 'Add arrows, boxes, notes, blur, and highlights so people know exactly where to look.',
+  },
+  {
+    number: '3',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    title: 'Paste it where work happens',
+    description: 'Drop clear visual context into Claude, ChatGPT, Cursor, Slack, Jira, GitHub, or your next product discussion.',
+  },
+];
+---
+
+<section class="workflow" id="workflow">
+  <div class="container">
+    <div class="section-header fade-target">
+      <p class="eyebrow">How it works</p>
+      <h2>From screenshot to shared context.</h2>
+      <p class="subtext">Capture the screen. Mark the important part. Paste it wherever work happens.</p>
+    </div>
+
+    <div class="steps fade-target">
+      {steps.map((step, i) => (
+        <div class="step">
+          <div class="step-header">
+            <div class="step-number">{step.number}</div>
+            <div class="step-icon" set:html={step.icon} />
+            <h3>{step.title}</h3>
+          </div>
+          <p>{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Product screenshot -->
+    <div class="product-visual fade-target">
+      <img src="/assets/nudgy-hero.png" alt="Nudgy app annotating a screenshot with arrows, highlights, and notes" class="product-img" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow {
+    padding: 7rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── Scroll reveal ── */
+  .fade-target {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fade-target.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Section header ── */
+  .section-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+    color: var(--text);
+  }
+
+  .subtext {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Steps ── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  /* Horizontal connector track (pseudo-element to avoid grid slot) */
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: calc(1rem + 1.5rem + 0.8rem);
+    left: calc(1.5rem + 0.8rem + 0.75rem);
+    right: calc(1.5rem + 0.8rem + 0.75rem);
+    height: 2px;
+    z-index: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255, 107, 43, 0.2) 0px,
+      rgba(255, 107, 43, 0.2) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .step {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .step:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255, 107, 43, 0.18);
+    box-shadow: 0 4px 24px rgba(255, 107, 43, 0.06);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .step-number {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(255, 107, 43, 0.25);
+  }
+
+  .step-icon {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .step h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .step p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: calc(1.6rem + 0.65rem);
+  }
+
+  /* ── Product visual ── */
+  .product-visual {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Radial glow behind the image */
+  .product-visual::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(255, 107, 43, 0.25) 0%, rgba(255, 107, 43, 0.1) 35%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(60px);
+  }
+
+  .product-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 840px;
+    border-radius: 12px;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 32px 64px rgba(0, 0, 0, 0.5),
+      0 0 120px rgba(255, 107, 43, 0.15);
+    mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .steps::before {
+      display: none;
+    }
+
+    .workflow {
+      padding: 4rem 1.25rem;
+    }
+
+    .product-img {
+      border-radius: 8px;
+    }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.fade-target').forEach((el) => observer.observe(el));
+</script>

@@ -1,60 +1,62 @@
 ---
 const faqs = [
   {
-    q: "Can I use this for vibe coding?",
-    a: `Absolutely. Nudgy was basically built for vibe coding sessions.
+    q: "What is Nudgy?",
+    a: `Nudgy is a lightweight Mac screenshot tool for capturing, annotating, and sharing visual feedback. Grab any part of your screen, mark it up with arrows, shapes, blur, highlights, and text, then paste it into AI tools, Slack, Jira, GitHub, or wherever work happens.
 
-When you're deep in a flow with Claude or Cursor, being able to capture your screen, circle the thing that's broken, and paste it straight into the chat is a superpower. No descriptions, no misunderstandings. Just point at the problem.
-
-Vibe coding moves fast. Nudgy keeps up.`,
-  },
-  {
-    q: "Which AI tools will it work with?",
-    a: `All the major ones. Claude, ChatGPT, Gemini, and Cursor are all multimodal and handle images natively. Just paste or attach your annotated screenshot and you're good to go.
-
-It also works with AI-powered command line tools. Claude Code in Terminal, for example, can read images directly, so you can drop an annotated screenshot straight into your CLI workflow.
-
-If an AI tool has an image input, Nudgy works with it.`,
-  },
-  {
-    q: "Will AI actually work with these screenshots?",
-    a: `Yes, and in most cases it works better than typing out a long prompt.
-
-Describing a UI bug or layout issue in words is slow and ambiguous. An annotated screenshot cuts straight to the point. Your AI sees exactly what you see, with your arrows and notes pointing at the problem.
-
-Less back-and-forth, fewer misunderstandings. Just faster, clearer results.`,
-  },
-  {
-    q: "Why not just use macOS's built-in screenshot tools?",
-    a: `macOS is great at capturing. But the moment you need to circle something, draw an arrow, or write "THIS" next to a bug, you're opening another app and losing your flow.
-
-Nudgy keeps you in the zone. Capture, annotate, copy, done. No context switching, no friction.`,
-  },
-  {
-    q: "Is my data actually private?",
-    a: `Completely. Nudgy runs entirely on your Mac. No server, no account, no analytics. Your screenshots never leave your machine.
-
-We literally have no way to see them even if we wanted to.`,
-  },
-  {
-    q: "How fast is it really?",
-    a: `From shortcut to annotated screenshot in your clipboard: under 10 seconds if you're taking your time. The global shortcut means you never have to leave whatever you're working on.
-
-Capture. Annotate. Paste. Done.`,
+It's built for speed. One shortcut to capture, a few clicks to annotate, and you're done.`,
   },
   {
     q: "Who is Nudgy for?",
-    a: `Anyone who communicates visually: teammates, clients, or AI tools.
+    a: `Nudgy is for vibe coders, product managers, designers, developers, support teams, sales engineers, and anyone in tech who needs to explain what's on screen quickly.
 
-If you've ever typed three paragraphs trying to describe something you could have just circled, Nudgy is for you.`,
+If you've ever spent three paragraphs describing a UI bug you could have just circled, Nudgy is for you.`,
+  },
+  {
+    q: "Can I use Nudgy with AI tools?",
+    a: `Yes. Nudgy is useful for giving Claude, ChatGPT, Cursor, and similar tools better visual context. Capture the screenshot, mark what matters, and paste it into your AI workflow.
+
+Annotated screenshots remove ambiguity from prompts. AI models understand images natively — a marked-up screenshot with an arrow pointing at a bug gives far more context than a paragraph trying to describe it.`,
+  },
+  {
+    q: "How is Nudgy different from a normal screenshot?",
+    a: `A normal screenshot shows the screen. Nudgy helps you show what matters.
+
+With arrows, circles, highlights, blur, and text labels, you can point attention exactly where it needs to go. The result is a screenshot that actually communicates — not just a raw capture that requires a paragraph of explanation alongside it.`,
+  },
+  {
+    q: "Why not just use built-in macOS screenshots?",
+    a: `macOS gives you fullscreen or selected area — that's it. No annotation, no scrolling capture. The moment you need to circle a bug or add context, you're opening Preview and losing your flow.
+
+Nudgy also does scrolling capture — something macOS can't do at all. Grab an entire Slack thread, a long webpage, or a full error log in one shot. That's huge for summarizing conversations, generating tickets from context, or giving AI the full picture instead of a cropped fragment.
+
+Capture, annotate, paste — one step, not three apps.`,
+  },
+  {
+    q: "Does anything get uploaded or sent to a server?",
+    a: `No. Nudgy runs entirely on your Mac. No cloud, no server, no analytics, no telemetry. Your screenshots never leave your machine unless you explicitly choose to share them.
+
+This matters especially if you're working on proprietary code, internal tools, or client projects. Your visual context stays private.`,
+  },
+  {
+    q: "How fast is the workflow?",
+    a: `Under 10 seconds from shortcut to annotated screenshot in your AI tool. And that's if you're taking your time.
+
+The global shortcut triggers from anywhere, so you never leave the app you're working in. Capture, mark up, paste. That's the whole flow.`,
+  },
+  {
+    q: "Is it really free?",
+    a: `The core product is free forever. Capture, annotate, save locally — no limits on that for 25 screenshots per month, no account required.
+
+Pro tiers unlock unlimited screenshots, shareable links, animated GIFs, and cloud storage for teams that need more. But the free version is a fully capable tool, not a trial.`,
   },
 ];
 ---
 
-<section class="faq">
+<section class="faq" id="faq">
   <div class="container">
     <div class="section-header">
-      <p class="eyebrow">For Humans and AI</p>
+      <p class="eyebrow">Questions</p>
       <h2 class="heading">FAQ</h2>
     </div>
 
