@@ -516,4 +516,29 @@ const tiers = [
       grid-template-columns: 1fr;
     }
   }
+
+  @media (max-width: 480px) {
+    .toggle-wrap {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .save-badge {
+      font-size: 0.6rem;
+      padding: 0.15rem 0.4rem;
+    }
+
+    .pricing {
+      padding: 3.5rem 1rem 4rem;
+    }
+
+    .card {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .card--highlight .price-amount {
+      font-size: 2.8rem;
+    }
+  }
 </style>
