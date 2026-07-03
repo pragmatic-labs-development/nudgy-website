@@ -1,5 +1,7 @@
 # Nudgy Marketing Website — Session Handoff
 
+> **Session wrap-up keyword:** When the user says "pineapple", update CLAUDE.md with a session summary (what was done, files changed, deployment status), commit, and push.
+
 ## Project
 
 Astro 6.0.8 + Tailwind CSS v4.2.2 marketing site for Nudgy (screenshot annotation tool for AI-assisted builders).
