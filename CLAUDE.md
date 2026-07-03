@@ -49,7 +49,7 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **New: ShareMechanics** (`ShareMechanics.astro`): Section explaining sharing capabilities — drag/drop, clipboard, integrations with Slack/Jira/GitHub/etc.
 
 ### Session 3 — Polish, new section, hero rewrite, deploy to production
-- **Hero** (`Hero.astro`): Complete headline rewrite — "Your AI is guessing. Give it a nudge." Subheadline: "Stop arguing with AI. Just show it." Tagline: "Stop re-prompting. Start dragging and dropping to faster results." Removed `min-height: 100vh` to eliminate dead vertical space. Scroll cue repositioned from absolute to grid flow.
+- **Hero** (`Hero.astro`): Complete headline rewrite — "Your AI is guessing. Give it a nudge." Subheadline: "Stop arguing with AI. Just show it." Tagline: "Stop re-prompting. Drag, drop, done." Removed `min-height: 100vh` to eliminate dead vertical space. Scroll cue repositioned from absolute to grid flow.
 - **New: ScrollingCapture** (`ScrollingCapture.astro`): Dedicated section for scrolling capture — "Grab the whole page. macOS can't do this." Centered chip layout with 10 use cases: Slack Threads, Long PRDs, Contracts, Error Logs, Full Webpages, DocuSign, Code Files, Email Threads, GitHub Issues, Spreadsheets. Positioned after Privacy.
 - **Download** (`Download.astro`): Fresh copy — "Ready when you are." / "Free. No account required." Removed duplicate hero headline. Added `scroll-margin-top: 4rem` so nav "Get Started for Free" scrolls to a clean position.
 - **Nav** (`Nav.astro`): "Get Started for Free" now scrolls to `#download` section instead of direct .dmg download. Nudgy logo click smooth-scrolls to top of page.
