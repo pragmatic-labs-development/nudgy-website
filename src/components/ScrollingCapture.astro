@@ -1,0 +1,182 @@
+---
+const useCases = [
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    title: 'Slack Threads',
+    description: 'Capture an entire conversation and paste it into AI. Get a summary, extract action items, or catch up on what you missed.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+    title: 'Long PRDs & Docs',
+    description: 'Your colleague shares a 20-page product spec. Scroll-capture it, drop it into AI, and get the key points in seconds.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    title: 'Contracts & Paperwork',
+    description: 'DocuSign agreements, legal docs, compliance pages — capture the full document and let AI summarize instead of reading every page.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+    title: 'Error Logs & Stack Traces',
+    description: 'Grab the full output — not just the last few lines. Give AI the complete context so it can actually diagnose the problem.',
+  },
+];
+---
+
+<section class="scrolling-capture">
+  <div class="container">
+    <div class="section-header fade-target">
+      <p class="eyebrow">Scrolling capture</p>
+      <h2>Grab the whole page.<br class="br-desktop" /> macOS can't do this.</h2>
+      <p class="subtext">Built-in screenshots give you fullscreen or a selected area. Nudgy captures beyond the viewport — full threads, long documents, entire pages — so AI gets the complete picture.</p>
+    </div>
+
+    <div class="cases">
+      {useCases.map((item, i) => (
+        <div class="case fade-target" style={`--delay: ${i * 80}ms`}>
+          <div class="case-icon" set:html={item.icon} />
+          <div class="case-text">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = el.style.getPropertyValue('--delay') || '0ms';
+          setTimeout(() => el.classList.add('is-visible'), parseInt(delay));
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.scrolling-capture .fade-target').forEach(el => observer.observe(el));
+</script>
+
+<style>
+  .scrolling-capture {
+    padding: 5rem 1.5rem 5.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    margin-bottom: 0.85rem;
+    color: var(--text);
+  }
+
+  .br-desktop { display: inline; }
+
+  .subtext {
+    color: var(--muted);
+    font-size: 0.9rem;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Use case cards ── */
+  .cases {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .case {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--surface);
+    transition: background 0.25s;
+  }
+
+  .case:hover {
+    background: var(--surface-hover);
+  }
+
+  .case-icon {
+    color: var(--accent);
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    transition: filter 0.25s;
+  }
+
+  .case:hover .case-icon {
+    filter: drop-shadow(0 0 5px rgba(255, 107, 43, 0.5));
+  }
+
+  .case-text h3 {
+    font-size: 0.88rem;
+    font-weight: 650;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.35rem;
+  }
+
+  .case-text p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── Scroll reveal ── */
+  .fade-target {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .fade-target.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .br-desktop { display: none; }
+
+    .cases {
+      grid-template-columns: 1fr;
+    }
+
+    .scrolling-capture {
+      padding: 4rem 1.25rem;
+    }
+  }
+</style>
