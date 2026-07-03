@@ -96,7 +96,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
+    min-height: auto;
     align-items: start;
     padding-top: 5vh;
     overflow: hidden;
@@ -363,10 +363,9 @@
 
   /* ── Scroll cue ── */
   .scroll-cue {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 1.5rem 0 2rem;
     z-index: 2;
     color: var(--muted);
     text-decoration: none;
