@@ -3,10 +3,11 @@
 ## Project
 
 Astro 6.0.8 + Tailwind CSS v4.2.2 marketing site for Nudgy (screenshot annotation tool for AI-assisted builders).
-Branch: `redesign/ai-forward-homepage`
+Branch: `redesign/ai-forward-homepage` (merged to `main` — all changes are live)
 Dev server: `npm run dev` (runs on localhost:4321 or next available port)
 Site: https://get-nudged.online
 Repo: `pragmatic-labs-development/nudgy-website` on GitHub
+Deploy: GitHub Pages via `.github/workflows/deploy.yml` — auto-deploys on push to `main`
 
 ## Design System
 
@@ -25,7 +26,7 @@ Core message: Show the thing. Skip the essay. Turn screenshots into useful conte
 
 ## Homepage Section Order (Current)
 
-Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Features → ShareMechanics → Pricing → Download → FAQ → Footer
+Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → ScrollingCapture → Features → ShareMechanics → Pricing → Download → FAQ → Footer
 
 ## What Was Done (Sessions 1–3)
 
@@ -47,71 +48,74 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Features 
 - **New: PasteIntoAI** (`PasteIntoAI.astro`): Dedicated section showing the screenshot-to-AI workflow. Visual demo of pasting annotated screenshots into AI tools.
 - **New: ShareMechanics** (`ShareMechanics.astro`): Section explaining sharing capabilities — drag/drop, clipboard, integrations with Slack/Jira/GitHub/etc.
 
-### What was pushed
-All changes are live on `redesign/ai-forward-homepage` branch (commit `29e740a`).
+### Session 3 — Polish, new section, deploy to production
+- **New: ScrollingCapture** (`ScrollingCapture.astro`): Dedicated section for scrolling capture — "Grab the whole page. macOS can't do this." Centered chip layout with 10 use cases: Slack Threads, Long PRDs, Contracts, Error Logs, Full Webpages, DocuSign, Code Files, Email Threads, GitHub Issues, Spreadsheets. Positioned after Privacy.
+- **Download** (`Download.astro`): Fresh copy — "Ready when you are." / "Free. No account required." Removed duplicate hero headline. Added `scroll-margin-top: 4rem` so nav "Get Started for Free" scrolls to a clean position.
+- **Nav** (`Nav.astro`): "Get Started for Free" now scrolls to `#download` section instead of direct .dmg download. Nudgy logo click smooth-scrolls to top of page.
+- **Hero** (`Hero.astro`): Removed `min-height: 100vh` to eliminate dead vertical space. Scroll cue repositioned from absolute to grid flow.
+- **FAQ** (`FAQ.astro`): "Why not just use built-in macOS screenshots?" rewritten to highlight scrolling capture as key differentiator, with PRD/DocuSign/long document examples. "How fast is the workflow?" corrected from "under 10 seconds" to "a couple seconds" / "virtually instant."
+- **Deployed to production** via GitHub Pages. All changes merged to `main` through PRs #1–#7.
 
 ## What Still Needs Doing
 
-### Visual QA — Section-by-section review
-The process: screenshot each section in browser → evaluate layout/spacing/typography/hover states/animations → refine → move to next.
-
-**Status of each section:**
-1. **Nav** — Functional, not reviewed for polish
-2. **Hero** — Copy updated, hero image added, needs visual QA
-3. **Workflow** — Simplified, needs visual QA
-4. **UseCases** — Expanded content, needs visual QA
-5. **PasteIntoAI** — NEW, needs visual QA
+### Visual QA — Full section-by-section review
+Most sections have had incremental tweaks but haven't had a dedicated visual QA pass (spacing, typography, hover states, animations). Sections needing review:
+1. **Nav** — Functional, logo scroll-to-top working
+2. **Hero** — Dead space fixed, needs full visual QA
+3. **Workflow** — Needs visual QA
+4. **UseCases** — Needs visual QA
+5. **PasteIntoAI** — Needs visual QA
 6. **Privacy** — Not yet reviewed
-7. **Features** — Copy refreshed (layout previously approved), needs visual QA of new copy
-8. **ShareMechanics** — NEW, needs visual QA
-9. **Pricing** — Copy updated, needs visual QA
-10. **Download** — Copy updated, needs visual QA
-11. **FAQ** — Rewritten, needs visual QA
-12. **Footer** — Not yet reviewed
+7. **ScrollingCapture** — NEW, basic visual confirmed
+8. **Features** — Needs visual QA of new copy
+9. **ShareMechanics** — Needs visual QA
+10. **Pricing** — Needs visual QA
+11. **Download** — Scroll position confirmed, needs full QA
+12. **FAQ** — Copy updated, needs visual QA
+13. **Footer** — Not yet reviewed
 
 ### Mobile responsiveness
-All sections need mobile/tablet viewport testing. Previous session fixed some mobile issues in Nav/Hero/Pricing/Download but the new sections and copy changes haven't been tested on mobile.
-
-### Deployment
-Branch `redesign/ai-forward-homepage` needs to be merged to main/production when ready. Confirm deployment pipeline (Cloudflare Pages or similar).
+All sections need mobile/tablet viewport testing. The new sections (ScrollingCapture, PasteIntoAI, ShareMechanics) haven't been tested on mobile.
 
 ### BrandMoment placement
-`BrandMoment.astro` was created but is NOT currently in `index.astro`. Decide where to place it (likely after UseCases or before Download) and add it to the page.
+`BrandMoment.astro` exists but is NOT in `index.astro`. Decide where to place it (likely after UseCases or before Download) and add it to the page.
 
 ## Key Constraints
 
 - Preserve: dark theme, orange accent (#FF6B2B), bird mascot as sidekick, indie feel, existing animation system
 - Evolve: messaging toward AI/vibe-coding, visual prompting, "show AI what you mean"
 - macOS only for now (Apple Silicon & Intel, macOS 13.0+)
+- Scrolling capture is a key differentiator vs macOS native — emphasize it
 
 ## File Map
 
 ```
 src/
 ├── components/
-│   ├── Nav.astro             — Fixed header, scroll detection
-│   ├── Hero.astro            — Hero with headline + hero image
-│   ├── Workflow.astro        — 3-step capture/annotate/share flow
-│   ├── UseCases.astro        — Expanded use case cards (devs, PMs, designers, etc.)
-│   ├── PasteIntoAI.astro     — NEW: Screenshot-to-AI workflow demo
-│   ├── Privacy.astro         — Privacy-first messaging
-│   ├── Features.astro        — 6-card feature grid
-│   ├── ShareMechanics.astro  — NEW: Sharing/integration capabilities
-│   ├── BrandMoment.astro     — NEW: Brand personality (not yet in index.astro)
-│   ├── Pricing.astro         — 3 tiers with annual/monthly toggle
-│   ├── Download.astro        — CTA card
-│   ├── FAQ.astro             — 6-question accordion
-│   ├── Footer.astro          — Multi-column footer
-│   └── Screenshots.astro     — Placeholder (not used on homepage)
+│   ├── Nav.astro              — Fixed header, scroll detection, logo scrolls to top
+│   ├── Hero.astro             — Hero with headline + mascot image
+│   ├── Workflow.astro         — 3-step capture/annotate/share flow
+│   ├── UseCases.astro         — Expanded use case cards (devs, PMs, designers, etc.)
+│   ├── PasteIntoAI.astro      — Screenshot-to-AI workflow demo + tool chips
+│   ├── Privacy.astro          — Privacy-first messaging
+│   ├── ScrollingCapture.astro — NEW: Scrolling capture use cases (10 chips)
+│   ├── Features.astro         — 6-card feature grid
+│   ├── ShareMechanics.astro   — Sharing/integration capabilities (2x2 grid)
+│   ├── BrandMoment.astro      — Brand personality (not yet in index.astro)
+│   ├── Pricing.astro          — 3 tiers with annual/monthly toggle
+│   ├── Download.astro         — CTA card ("Ready when you are.")
+│   ├── FAQ.astro              — 8-question accordion
+│   ├── Footer.astro           — Multi-column footer
+│   └── Screenshots.astro      — Placeholder (not used on homepage)
 ├── layouts/
-│   └── Base.astro            — HTML shell, meta, fonts
+│   └── Base.astro             — HTML shell, meta, fonts
 ├── pages/
-│   ├── index.astro           — Homepage composition
-│   ├── privacy.astro         — Privacy policy
-│   └── terms.astro           — Terms of use
+│   ├── index.astro            — Homepage composition
+│   ├── privacy.astro          — Privacy policy
+│   └── terms.astro            — Terms of use
 ├── styles/
-│   └── global.css            — CSS variables, base styles, Tailwind
+│   └── global.css             — CSS variables, base styles, Tailwind
 public/
 └── assets/
-    └── nudgy-hero.png        — Hero section image
+    └── kiwi-mascot.png        — Kiwi bird mascot image
 ```
