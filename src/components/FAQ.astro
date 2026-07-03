@@ -1,34 +1,34 @@
 ---
 const faqs = [
   {
-    q: "How does this actually help with vibe coding?",
-    a: `When you're building with Claude, Cursor, or ChatGPT, you're constantly explaining what you see on screen. "The button in the top right is misaligned," "the color is wrong on hover," "the spacing between these two elements looks off."
+    q: "What is Nudgy?",
+    a: `Nudgy is a lightweight Mac screenshot tool for capturing, annotating, and sharing visual feedback. Grab any part of your screen, mark it up with arrows, shapes, blur, highlights, and text, then paste it into AI tools, Slack, Jira, GitHub, or wherever work happens.
 
-With Nudgy, you skip all of that. Capture your screen, circle the problem, drop the screenshot into your AI. It sees exactly what you see. No guessing, no back-and-forth.
-
-Vibe coding is about staying in flow. Nudgy keeps you there.`,
+It's built for speed. One shortcut to capture, a few clicks to annotate, and you're done.`,
   },
   {
-    q: "Which AI tools does this work with?",
-    a: `Every major AI tool that accepts images. Claude, ChatGPT, Gemini, and Cursor all handle annotated screenshots natively. Just paste or attach and go.
+    q: "Who is Nudgy for?",
+    a: `Nudgy is for vibe coders, product managers, designers, developers, support teams, sales engineers, and anyone in tech who needs to explain what's on screen quickly.
 
-It also works with CLI tools like Claude Code in Terminal, which reads images directly. And any AI-powered IDE, agent, or assistant that supports image input.
-
-If your AI tool can see images, Nudgy works with it.`,
+If you've ever spent three paragraphs describing a UI bug you could have just circled, Nudgy is for you.`,
   },
   {
-    q: "Does an annotated screenshot actually produce better AI responses?",
-    a: `Significantly. AI models are multimodal — they understand images natively. An annotated screenshot with an arrow pointing at a bug gives the model far more context than a paragraph of text trying to describe it.
+    q: "Can I use Nudgy with AI tools?",
+    a: `Yes. Nudgy is useful for giving Claude, ChatGPT, Cursor, and similar tools better visual context. Capture the screenshot, mark what matters, and paste it into your AI workflow.
 
-Think of it this way: you wouldn't describe a painting to someone standing next to you. You'd point at it. Same principle.
-
-Less ambiguity in, better output out.`,
+Annotated screenshots remove ambiguity from prompts. AI models understand images natively — a marked-up screenshot with an arrow pointing at a bug gives far more context than a paragraph trying to describe it.`,
   },
   {
-    q: "Why not just use the built-in macOS screenshot tool?",
+    q: "How is Nudgy different from a normal screenshot?",
+    a: `A normal screenshot shows the screen. Nudgy helps you show what matters.
+
+With arrows, circles, highlights, blur, and text labels, you can point attention exactly where it needs to go. The result is a screenshot that actually communicates — not just a raw capture that requires a paragraph of explanation alongside it.`,
+  },
+  {
+    q: "Why not just use built-in macOS screenshots?",
     a: `macOS captures great screenshots. But the moment you need to circle something, draw an arrow, or write "fix this" next to a bug, you're opening Preview or another app and losing your flow.
 
-Nudgy does capture and annotation in one step. Shortcut, select, annotate, copy. You're back in your AI tool in seconds, not minutes.`,
+Nudgy does capture and annotation in one step. Shortcut, select, annotate, paste. You're back in your workflow in seconds, not minutes.`,
   },
   {
     q: "Does anything get uploaded or sent to a server?",
@@ -43,12 +43,6 @@ This matters especially if you're working on proprietary code, internal tools, o
 The global shortcut triggers from anywhere, so you never leave the app you're working in. Capture, mark up, paste. That's the whole flow.`,
   },
   {
-    q: "Who is Nudgy for?",
-    a: `Anyone building with AI who communicates visually. Vibe coders, frontend developers, designers, product managers, QA engineers.
-
-If you've ever spent three paragraphs trying to describe a UI bug that you could have just circled, Nudgy is for you. If you paste screenshots into Claude or Cursor as part of your workflow, Nudgy makes that workflow dramatically faster.`,
-  },
-  {
     q: "Is it really free?",
     a: `The core product is free forever. Capture, annotate, save locally — no limits on that for 25 screenshots per month, no account required.
 
@@ -57,7 +51,7 @@ Pro tiers unlock unlimited screenshots, shareable links, animated GIFs, and clou
 ];
 ---
 
-<section class="faq">
+<section class="faq" id="faq">
   <div class="container">
     <div class="section-header">
       <p class="eyebrow">Questions</p>

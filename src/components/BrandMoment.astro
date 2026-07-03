@@ -1,0 +1,69 @@
+---
+---
+
+<section class="brand-moment">
+  <div class="container fade-target">
+    <p class="kicker">Tiny legs. Big busywork shredder.</p>
+    <p class="body">Nudgy moves fast, stays out of the way, and helps your screenshots say what your paragraph was trying to.</p>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  document.querySelectorAll('.brand-moment .fade-target').forEach(el => observer.observe(el));
+</script>
+
+<style>
+  .brand-moment {
+    padding: 5rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .kicker {
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+    background: linear-gradient(135deg, #FF6B2B 0%, #FFAA6B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .body {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  /* ── Scroll reveal ── */
+  .fade-target {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-target.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

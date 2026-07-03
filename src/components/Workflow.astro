@@ -3,20 +3,20 @@ const steps = [
   {
     number: '1',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
-    title: 'Capture',
-    description: 'Hit the global shortcut from anywhere. Select a region or grab the full screen — Nudgy stays invisible until you need it.',
+    title: 'Capture the thing',
+    description: 'Grab a region, window, or screen the moment you see something worth explaining.',
   },
   {
     number: '2',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
-    title: 'Annotate',
-    description: 'Circle the bug. Arrow to the broken layout. Write "THIS" next to the thing that needs fixing. Mark what matters in seconds.',
+    title: 'Mark what matters',
+    description: 'Add arrows, boxes, notes, blur, and highlights so people know exactly where to look.',
   },
   {
     number: '3',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-    title: 'Drop into AI',
-    description: 'Drag or paste your annotated screenshot straight into Claude, ChatGPT, Cursor, or any AI tool. Your AI sees exactly what you see.',
+    title: 'Paste it where work happens',
+    description: 'Drop clear visual context into Claude, ChatGPT, Cursor, Slack, Jira, GitHub, or your next product discussion.',
   },
 ];
 ---
@@ -25,8 +25,8 @@ const steps = [
   <div class="container">
     <div class="section-header fade-target">
       <p class="eyebrow">How it works</p>
-      <h2>Three steps. Zero friction.</h2>
-      <p class="subtext">From screen to AI in under 10 seconds. No context switching, no describing what you see in three paragraphs.</p>
+      <h2>From screenshot to shared context.</h2>
+      <p class="subtext">Capture the screen. Mark the important part. Paste it wherever work happens.</p>
     </div>
 
     <div class="steps fade-target">
@@ -42,63 +42,9 @@ const steps = [
       ))}
     </div>
 
-    <!-- Before / After comparison -->
-    <div class="comparison fade-target">
-      <div class="compare-card compare-before">
-        <div class="compare-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          Without Nudgy
-        </div>
-        <div class="compare-content">
-          <div class="chat-messages">
-            <div class="chat-bubble">"The button in the top right of the settings panel — no, not that one, the one below the toggle, next to the dropdown — it's misaligned by a few pixels and the hover state is wrong..."</div>
-            <div class="chat-bubble chat-followup">"Wait, actually I mean the second button. The color should be the same orange as the header but it looks more like salmon. Can you see it?"</div>
-          </div>
-          <span class="compare-verdict">
-            Slow, vague, frustrating
-          </span>
-        </div>
-      </div>
-
-      <div class="compare-divider" aria-hidden="true">
-        <span>vs</span>
-      </div>
-
-      <div class="compare-card compare-after">
-        <div class="compare-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          With Nudgy
-        </div>
-        <div class="compare-content">
-          <div class="compare-visual">
-            <div class="mock-screenshot">
-              <!-- Fake UI elements to make it feel like a real screenshot -->
-              <div class="mock-ui-bar"></div>
-              <div class="mock-ui-sidebar">
-                <div class="mock-ui-line" style="width:70%"></div>
-                <div class="mock-ui-line" style="width:55%"></div>
-                <div class="mock-ui-line" style="width:80%"></div>
-              </div>
-              <div class="mock-ui-content">
-                <div class="mock-ui-block"></div>
-                <div class="mock-ui-target"></div>
-              </div>
-              <!-- Annotation overlay -->
-              <div class="mock-circle" aria-hidden="true"></div>
-              <div class="mock-arrow-line" aria-hidden="true">
-                <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
-                  <path d="M2 18 C 15 18, 25 6, 48 6" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round" fill="none"/>
-                  <polygon points="48,2 56,6 48,10" fill="#FF6B2B"/>
-                </svg>
-              </div>
-              <span class="mock-text-label">Fix this color</span>
-            </div>
-          </div>
-          <span class="compare-verdict compare-verdict--good">
-            Instant, clear, visual
-          </span>
-        </div>
-      </div>
+    <!-- Product screenshot -->
+    <div class="product-visual fade-target">
+      <img src="/assets/nudgy-hero.png" alt="Nudgy app annotating a screenshot with arrows, highlights, and notes" class="product-img" />
     </div>
   </div>
 </section>
@@ -250,222 +196,41 @@ const steps = [
     padding-left: calc(1.6rem + 0.65rem);
   }
 
-  /* ── Comparison ── */
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 0;
-    align-items: stretch;
-  }
-
-  .compare-card {
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .compare-label {
-    padding: 0.7rem 1.25rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .compare-before .compare-label {
-    background: rgba(255, 60, 60, 0.04);
-    color: #884444;
-  }
-
-  .compare-before .compare-label svg {
-    color: #884444;
-  }
-
-  .compare-after .compare-label {
-    background: rgba(255, 107, 43, 0.06);
-    color: var(--accent);
-  }
-
-  .compare-after .compare-label svg {
-    color: var(--accent);
-  }
-
-  .compare-content {
-    padding: 1.5rem 1.25rem;
-    background: var(--surface);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    flex: 1;
-    justify-content: space-between;
-  }
-
-  /* Chat bubbles for "without" side */
-  .chat-messages {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .chat-bubble {
-    font-size: 0.8rem;
-    color: #777;
-    line-height: 1.7;
-    font-style: italic;
-    padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 10px 10px 10px 2px;
-  }
-
-  .chat-followup {
-    border-radius: 10px 10px 10px 2px;
-    font-size: 0.76rem;
-    color: #555;
-  }
-
-  .compare-verdict {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: #555;
-    padding-top: 0.25rem;
-  }
-
-  .compare-verdict--good {
-    color: var(--accent);
-  }
-
-  /* Divider */
-  .compare-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.75rem;
-  }
-
-  .compare-divider span {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #333;
-    background: var(--bg);
-    padding: 0.3rem 0.5rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-  }
-
-  /* Mock screenshot — richer */
-  .compare-visual {
+  /* ── Product visual ── */
+  .product-visual {
     display: flex;
     justify-content: center;
-    padding: 0.5rem 0;
-  }
-
-  .mock-screenshot {
     position: relative;
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 16 / 10;
-    background: #0a0a0a;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
   }
 
-  /* Fake UI chrome inside the mock */
-  .mock-ui-bar {
-    height: 12%;
-    background: linear-gradient(180deg, #161616 0%, #111 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  }
-
-  .mock-ui-sidebar {
+  /* Radial glow behind the image */
+  .product-visual::before {
+    content: '';
     position: absolute;
-    top: 12%;
-    left: 0;
-    width: 28%;
-    height: 88%;
-    border-right: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 12% 8%;
-    display: flex;
-    flex-direction: column;
-    gap: 10%;
-  }
-
-  .mock-ui-line {
-    height: 3px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 2px;
-  }
-
-  .mock-ui-content {
-    position: absolute;
-    top: 18%;
-    left: 32%;
-    right: 6%;
-    bottom: 10%;
-    display: flex;
-    flex-direction: column;
-    gap: 8%;
-  }
-
-  .mock-ui-block {
-    height: 35%;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
-  }
-
-  .mock-ui-target {
-    width: 40%;
-    height: 18%;
-    background: rgba(200, 100, 80, 0.15);
-    border-radius: 4px;
-  }
-
-  /* Annotation elements */
-  .mock-circle {
-    position: absolute;
-    top: 52%;
-    left: 35%;
-    width: 28%;
-    height: 30%;
-    border: 2px solid var(--accent);
+    width: 90%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(255, 107, 43, 0.25) 0%, rgba(255, 107, 43, 0.1) 35%, transparent 65%);
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(255, 107, 43, 0.3);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(60px);
   }
 
-  .mock-arrow-line {
-    position: absolute;
-    top: 35%;
-    left: 52%;
-  }
-
-  .mock-text-label {
-    position: absolute;
-    top: 22%;
-    right: 8%;
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: var(--accent);
-    background: rgba(255, 107, 43, 0.12);
-    border: 1px solid rgba(255, 107, 43, 0.3);
-    border-radius: 4px;
-    padding: 0.15rem 0.45rem;
-    white-space: nowrap;
-  }
-
-  .compare-after .compare-content {
-    border-left: 2px solid rgba(255, 107, 43, 0.15);
+  .product-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 840px;
+    border-radius: 12px;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 32px 64px rgba(0, 0, 0, 0.5),
+      0 0 120px rgba(255, 107, 43, 0.15);
+    mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
   }
 
   /* ── Mobile ── */
@@ -479,22 +244,12 @@ const steps = [
       display: none;
     }
 
-    .comparison {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .compare-divider {
-      padding: 0;
-    }
-
-    .compare-divider span {
-      width: 100%;
-      text-align: center;
-    }
-
     .workflow {
       padding: 4rem 1.25rem;
+    }
+
+    .product-img {
+      border-radius: 8px;
     }
   }
 </style>
