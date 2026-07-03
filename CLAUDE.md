@@ -57,6 +57,17 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **FAQ** (`FAQ.astro`): "Why not just use built-in macOS screenshots?" rewritten to highlight scrolling capture as key differentiator, with PRD/DocuSign/long document examples. "How fast is the workflow?" corrected from "under 10 seconds" to "a couple seconds" / "virtually instant."
 - **Deployed to production** via GitHub Pages. All changes merged to `main` through PRs #1–#10.
 
+### Session 4 — Favicon for Google Search results
+- **Favicon assets**: Generated full favicon set from the desktop app's `icon-source.png` (1024x1024 orange kiwi on orange background):
+  - `public/favicon.ico` — ICO with 16x16, 32x32, 48x48 sizes
+  - `public/favicon-48x48.png` — 48x48 PNG
+  - `public/favicon-96x96.png` — 96x96 PNG
+  - `public/apple-touch-icon.png` — 180x180 PNG
+  - `public/site.webmanifest` — Web app manifest with icon references, theme color `#FF6A00`
+- **Base.astro** (`src/layouts/Base.astro`): Updated `<head>` with favicon link tags (ICO, PNG 48x48/96x96, SVG, apple-touch-icon, manifest, theme-color meta)
+- **Google Search Console**: Verified domain ownership via DNS TXT record on DreamHost. Requested indexing for `https://get-nudged.online/`. Google's favicon cache already shows the kiwi icon.
+- **Deployed to production** via PR #13 merged to `main`.
+
 ## What Still Needs Doing
 
 ### Visual QA — Full section-by-section review
@@ -117,6 +128,12 @@ src/
 ├── styles/
 │   └── global.css             — CSS variables, base styles, Tailwind
 public/
+├── favicon.ico                — ICO favicon (16/32/48px)
+├── favicon-48x48.png          — PNG favicon 48x48
+├── favicon-96x96.png          — PNG favicon 96x96
+├── favicon.svg                — SVG favicon (orange kiwi)
+├── apple-touch-icon.png       — Apple touch icon 180x180
+├── site.webmanifest           — Web app manifest
 └── assets/
     └── kiwi-mascot.png        — Kiwi bird mascot image
 ```
