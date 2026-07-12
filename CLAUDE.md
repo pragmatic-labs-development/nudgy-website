@@ -1,6 +1,6 @@
 # Nudgy Marketing Website — Session Handoff
 
-> **Session wrap-up keyword:** When the user says "pineapple", update CLAUDE.md with a session summary (what was done, files changed, deployment status), commit, and push.
+> **Session wrap-up keyword:** When the user says "pineapple": (1) push all changes, (2) update CLAUDE.md with a session summary (what was done, files changed, deployment status), (3) commit & push, (4) give the user a summary of outstanding work and a prompt to kick off the next session.
 
 ## Project
 
@@ -59,7 +59,7 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **FAQ** (`FAQ.astro`): "Why not just use built-in macOS screenshots?" rewritten to highlight scrolling capture as key differentiator, with PRD/DocuSign/long document examples. "How fast is the workflow?" corrected from "under 10 seconds" to "a couple seconds" / "virtually instant."
 - **Deployed to production** via GitHub Pages. All changes merged to `main` through PRs #1–#10.
 
-### Session 4 — Favicon for Google Search results
+### Session 4 — Favicon for Google Search results & download link fix
 - **Favicon assets**: Generated full favicon set from the desktop app's `icon-source.png` (1024x1024 orange kiwi on orange background):
   - `public/favicon.ico` — ICO with 16x16, 32x32, 48x48 sizes
   - `public/favicon-48x48.png` — 48x48 PNG
@@ -69,6 +69,11 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **Base.astro** (`src/layouts/Base.astro`): Updated `<head>` with favicon link tags (ICO, PNG 48x48/96x96, SVG, apple-touch-icon, manifest, theme-color meta)
 - **Google Search Console**: Verified domain ownership via DNS TXT record on DreamHost. Requested indexing for `https://get-nudged.online/`. Google's favicon cache already shows the kiwi icon.
 - **Deployed to production** via PR #13 merged to `main`.
+
+### Session 5 — Release Notes page
+- **New: Release Notes page** (`src/pages/releases.astro`): Timeline-style release notes page at `/releases` with version history for v0.1.0 through v0.2.2. Orange dot timeline, color-coded tags (green "New", blue "Fix", purple "Improved"). Responsive design matching site's dark theme.
+- **Footer** (`src/components/Footer.astro`): Added "Release Notes" link to the Product column in the footer nav.
+- **Deployed to production** — pushed directly to `main`, auto-deployed via GitHub Pages.
 
 ## What Still Needs Doing
 
@@ -93,6 +98,9 @@ All sections need mobile/tablet viewport testing. The new sections (ScrollingCap
 
 ### BrandMoment placement
 `BrandMoment.astro` exists but is NOT in `index.astro`. Decide where to place it (likely after UseCases or before Download) and add it to the page.
+
+### Release Notes maintenance
+When new versions of Nudgy ship, add entries to `src/pages/releases.astro`. The page uses a timeline layout — add new `<article class="release">` blocks at the top of the `.timeline` div. Use tags: `<span class="tag new">New</span>`, `<span class="tag fix">Fix</span>`, `<span class="tag improved">Improved</span>`.
 
 ## Key Constraints
 
@@ -119,13 +127,14 @@ src/
 │   ├── Pricing.astro          — 3 tiers with annual/monthly toggle
 │   ├── Download.astro         — CTA card ("Ready when you are.")
 │   ├── FAQ.astro              — 8-question accordion
-│   ├── Footer.astro           — Multi-column footer
+│   ├── Footer.astro           — Multi-column footer (links to /releases)
 │   └── Screenshots.astro      — Placeholder (not used on homepage)
 ├── layouts/
 │   └── Base.astro             — HTML shell, meta, fonts
 ├── pages/
 │   ├── index.astro            — Homepage composition
 │   ├── privacy.astro          — Privacy policy
+│   ├── releases.astro         — Release notes timeline (v0.1.0–v0.2.2)
 │   └── terms.astro            — Terms of use
 ├── styles/
 │   └── global.css             — CSS variables, base styles, Tailwind
