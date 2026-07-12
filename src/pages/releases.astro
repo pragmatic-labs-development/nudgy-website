@@ -1,0 +1,226 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Release Notes — Nudgy" description="What's new in Nudgy. See the latest updates, fixes, and features added to the screenshot annotation tool for AI-assisted builders.">
+  <Nav />
+  <main class="releases-page">
+    <div class="container">
+      <h1>Release Notes</h1>
+      <p class="subtitle">What's new in Nudgy — updates, fixes, and new features.</p>
+
+      <div class="timeline">
+
+        <!-- v0.2.2 -->
+        <article class="release">
+          <div class="release-header">
+            <div class="version-badge">v0.2.2</div>
+            <time datetime="2026-07-11">July 11, 2026</time>
+          </div>
+          <h2>Scroll Capture Stitching Rewrite</h2>
+          <ul>
+            <li><span class="tag fix">Fix</span> Rewrote scroll capture stitching engine and widget detection for cleaner full-page captures</li>
+          </ul>
+        </article>
+
+        <!-- v0.2.1 -->
+        <article class="release">
+          <div class="release-header">
+            <div class="version-badge">v0.2.1</div>
+            <time datetime="2026-07-11">July 11, 2026</time>
+          </div>
+          <h2>Vision Framework Scroll Detection</h2>
+          <ul>
+            <li><span class="tag fix">Fix</span> Switched to macOS Vision framework for scroll offset detection, eliminating stitching artifacts in full-page captures</li>
+          </ul>
+        </article>
+
+        <!-- v0.2.0 -->
+        <article class="release">
+          <div class="release-header">
+            <div class="version-badge">v0.2.0</div>
+            <time datetime="2026-07-06">July 6, 2026</time>
+          </div>
+          <h2>Auto-Updates & Signed Builds</h2>
+          <ul>
+            <li><span class="tag new">New</span> Automatic updates — Nudgy now updates itself in the background so you always have the latest version</li>
+            <li><span class="tag new">New</span> Developer ID code signing & notarization — no more macOS Gatekeeper warnings</li>
+            <li><span class="tag new">New</span> Proper DMG installer with Applications folder shortcut</li>
+            <li><span class="tag new">New</span> Accessibility onboarding step added to setup flow</li>
+            <li><span class="tag fix">Fix</span> Scroll captures now export at original resolution instead of being downscaled</li>
+            <li><span class="tag fix">Fix</span> Default save location changed to ~/Downloads for a cleaner experience</li>
+            <li><span class="tag fix">Fix</span> Screen recording permission check no longer blocks on launch</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.0 -->
+        <article class="release">
+          <div class="release-header">
+            <div class="version-badge">v0.1.0</div>
+            <time datetime="2026-04-03">April 3, 2026</time>
+          </div>
+          <h2>First Public Release</h2>
+          <ul>
+            <li><span class="tag new">New</span> Instant screenshot capture with global keyboard shortcut</li>
+            <li><span class="tag new">New</span> Annotation editor — arrows, text, boxes, highlights, blur, and lines</li>
+            <li><span class="tag new">New</span> Scrolling capture for full-page screenshots (long PRDs, Slack threads, code files)</li>
+            <li><span class="tag new">New</span> One-click copy to clipboard — paste directly into Claude, ChatGPT, or Cursor</li>
+            <li><span class="tag new">New</span> Drag-and-drop from capture preview into any app</li>
+            <li><span class="tag new">New</span> Tray menu with quick access to capture actions</li>
+            <li><span class="tag new">New</span> Zoom, pan, and magnifying glass in the editor</li>
+            <li><span class="tag new">New</span> Auto-save to inbox with file path copied to clipboard</li>
+            <li><span class="tag new">New</span> macOS-native — runs on Apple Silicon and Intel, macOS 13.0+</li>
+            <li><span class="tag new">New</span> 100% local — no accounts, no cloud, no data collection</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .releases-page {
+    padding: 8rem 1.5rem 4rem;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .release {
+    position: relative;
+    padding-left: 1.75rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .release::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0.35rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow-strong);
+  }
+
+  .release-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .version-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(255, 107, 43, 0.1);
+    border: 1px solid rgba(255, 107, 43, 0.2);
+    border-radius: 100px;
+    padding: 0.15rem 0.55rem;
+    letter-spacing: 0.02em;
+  }
+
+  time {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+  }
+
+  .release h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .release ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .release li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    margin-right: 0.35rem;
+    position: relative;
+    top: -1px;
+  }
+
+  .tag.new {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .tag.fix {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+  }
+
+  .tag.improved {
+    color: #c084fc;
+    background: rgba(192, 132, 252, 0.1);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .releases-page {
+      padding: 6rem 1rem 3rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .release-header {
+      flex-wrap: wrap;
+    }
+  }
+</style>
