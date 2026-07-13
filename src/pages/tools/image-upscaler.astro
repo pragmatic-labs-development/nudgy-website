@@ -1,0 +1,111 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import UpscalerHero from '../../components/upscaler/UpscalerHero.astro';
+import UpscalerWorkspace from '../../components/upscaler/UpscalerWorkspace.astro';
+import UpscalerPromo from '../../components/upscaler/UpscalerPromo.astro';
+import BrowserSupportNotice from '../../components/upscaler/BrowserSupportNotice.astro';
+---
+
+<Base
+  title="Free AI Image Upscaler | Nudgy"
+  description="Upscale screenshots and images directly in your browser. Free, private, and no upload required."
+  canonicalPath="/tools/image-upscaler"
+>
+  <Nav />
+  <main>
+    <UpscalerHero />
+    <BrowserSupportNotice />
+    <UpscalerWorkspace />
+    <UpscalerPromo />
+
+    <!-- SEO content -->
+    <section class="seo-section">
+      <div class="seo-container">
+        <h2 class="seo-title">How it works</h2>
+        <div class="seo-grid">
+          <div class="seo-item">
+            <h3>AI-powered upscaling</h3>
+            <p>
+              This tool uses Real-ESRGAN, a state-of-the-art super-resolution model, to upscale
+              your images 2x. It's especially good at sharpening AI-generated images, screenshots,
+              and artwork.
+            </p>
+          </div>
+          <div class="seo-item">
+            <h3>Runs in your browser</h3>
+            <p>
+              Everything happens on your device using WebGPU acceleration. Your images never leave your
+              computer &mdash; nothing is uploaded to any server.
+            </p>
+          </div>
+          <div class="seo-item">
+            <h3>Limits</h3>
+            <p>
+              Supports PNG, JPEG, and WebP images up to 15 MB and 5000px per side.
+              The AI model (~67 MB) downloads once and is cached in your browser.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    import { initUpscaler } from '../../lib/upscaler/upscaler';
+    initUpscaler();
+  </script>
+</Base>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+
+  .seo-section {
+    padding: 3rem 1.5rem 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .seo-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .seo-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .seo-item h3 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .seo-item p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .seo-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>

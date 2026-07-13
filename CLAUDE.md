@@ -80,6 +80,88 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **Files changed:** `src/pages/index.astro` (import + placement)
 - **Deployment status:** Pushed to `main`, will auto-deploy via GitHub Pages.
 
+### Session 7 — AI Image Upscaler tool
+- **New page:** `/tools/image-upscaler` — free browser-based AI image upscaler using Real-ESRGAN x2plus via ONNX Runtime WebGPU
+- **New dependency:** `onnxruntime-web` v1.27.0 — ONNX Runtime with WebGPU support for in-browser ML inference
+- **Config:** `astro.config.mjs` — added `optimizeDeps.exclude` for onnxruntime-web and `worker.format: 'es'`
+- **Layout:** `Base.astro` — added optional `canonicalPath` prop for page-specific canonical URLs
+- **Features implemented:**
+  - Drag-and-drop, file picker, and paste image input
+  - 2x and 4x upscaling (4x runs the 2x model in two passes)
+  - Scale toggle (2x/4x radio buttons)
+  - Before/after comparison slider with draggable divider (40px handle, 44px hit area)
+  - Magnifying loupe on hover — 200px circle split before|after at native pixel resolution
+  - Zoom 100% toggle for full pixel-level inspection
+  - Model download progress bar (~67 MB, cached in browser Cache API)
+  - Tile progress with pass tracking for multi-pass (e.g., "tile 3 of 16 (pass 1/2)")
+  - Cancel button during processing
+  - PNG download with scale-aware filename (e.g., `image-2x.png`, `image-4x.png`)
+  - Alpha/transparency preservation
+  - Unsupported browser detection (WebGPU required)
+  - Accessible: ARIA roles, keyboard navigation, screen reader announcements
+  - Responsive: single-column on mobile
+  - Nudgy promo CTA card below results
+  - SEO content section explaining the tool
+- **Key technical details:**
+  - Model has fixed 64x64 input shape — tiles are padded to 64x64 with edge replication, output cropped back
+  - 8px tile overlap with linear blending to avoid seams
+  - Model URL: `https://huggingface.co/tidus2102/Real-ESRGAN/resolve/main/Real-ESRGAN_x2plus.onnx` (note hyphen in `Real-ESRGAN`)
+  - WebGPU execution provider with WASM fallback
+- **New files (13):**
+  - `src/pages/tools/image-upscaler.astro` — page route
+  - `src/components/upscaler/UpscalerHero.astro` — hero headline + trust labels
+  - `src/components/upscaler/UpscalerWorkspace.astro` — main tool UI (all states including loupe)
+  - `src/components/upscaler/UpscalerPromo.astro` — Nudgy CTA card
+  - `src/components/upscaler/BrowserSupportNotice.astro` — unsupported browser message
+  - `src/lib/upscaler/upscaler.ts` — main orchestrator (state machine, DOM binding, loupe)
+  - `src/lib/upscaler/upscale.worker.ts` — Web Worker for ONNX inference (multi-pass)
+  - `src/lib/upscaler/worker-client.ts` — typed wrapper for worker communication
+  - `src/lib/upscaler/image-utils.ts` — decode, validate, export utilities
+  - `src/lib/upscaler/comparison-slider.ts` — before/after slider component
+  - `src/lib/upscaler/capabilities.ts` — WebGPU/Worker detection
+  - `src/lib/upscaler/types.ts` — shared TypeScript types
+  - `src/lib/upscaler/constants.ts` — limits, tile sizes, model URL
+- **Deployment status:** Not yet pushed — all changes on `main`, ready to commit & push
+
+## AI Image Upscaler Architecture
+
+### Model
+- **Real-ESRGAN x2plus** (RRDBNet), BSD-3-Clause license
+- ~67 MB ONNX model fetched from Hugging Face CDN on first use
+- Cached in browser Cache API (`nudgy-upscaler-model-v1`)
+- Fixed input: `float32 [1, 3, 64, 64]` (NCHW, RGB, 0-1), Output: `float32 [1, 3, 128, 128]`
+- Tiles padded to 64x64 with edge replication, output cropped back to actual tile size
+- 4x upscaling = two sequential passes of the 2x model
+
+### Processing Pipeline
+1. Image loaded → validated (15MB, 5000px, 16MP limits)
+2. Image decoded to ImageData on main thread
+3. ImageData sent to Web Worker
+4. Worker: init ONNX Runtime (WebGPU EP, WASM fallback)
+5. Worker: fetch/cache model with progress
+6. Worker: tile image (256px tiles, 16px overlap)
+7. Worker: run inference per tile, report progress
+8. Worker: reconstruct output with linear blending in overlaps
+9. Worker: send result ImageData back to main thread
+10. Main thread: show before/after comparison slider + download
+
+### OOM Recovery
+If a tile fails with GPU memory error, tile size is halved (min 64px) and retried.
+
+### How to Swap the Model
+1. Replace `MODEL_URL` in `src/lib/upscaler/constants.ts`
+2. Update `MODEL_CACHE_NAME` to bust the cache
+3. Adjust `SCALE_FACTOR` if the new model uses a different scale
+4. Update `MODEL_SIZE_MB` for the UI hint
+
+### How to Adjust Limits
+Edit `src/lib/upscaler/constants.ts`:
+- `MAX_FILE_SIZE` — max input file size in bytes
+- `MAX_DIMENSION` — max width or height in pixels
+- `MAX_PIXELS` — max total pixel count
+- `DEFAULT_TILE_SIZE` — tile size for inference (larger = faster but more VRAM)
+- `DEFAULT_OVERLAP` — overlap between tiles (reduces seam artifacts)
+
 ## What Still Needs Doing
 
 ### Visual QA — Full section-by-section review
@@ -122,7 +204,7 @@ src/
 │   ├── UseCases.astro         — Expanded use case cards (devs, PMs, designers, etc.)
 │   ├── PasteIntoAI.astro      — Screenshot-to-AI workflow demo + tool chips
 │   ├── Privacy.astro          — Privacy-first messaging
-│   ├── ScrollingCapture.astro — NEW: Scrolling capture use cases (10 chips)
+│   ├── ScrollingCapture.astro — Scrolling capture use cases (10 chips)
 │   ├── Features.astro         — 6-card feature grid
 │   ├── ShareMechanics.astro   — Sharing/integration capabilities (2x2 grid)
 │   ├── BrandMoment.astro      — Brand personality (between ShareMechanics and Pricing)
@@ -130,14 +212,31 @@ src/
 │   ├── Download.astro         — CTA card ("Ready when you are.")
 │   ├── FAQ.astro              — 8-question accordion
 │   ├── Footer.astro           — Multi-column footer (links to /releases)
-│   └── Screenshots.astro      — Placeholder (not used on homepage)
+│   ├── Screenshots.astro      — Placeholder (not used on homepage)
+│   └── upscaler/
+│       ├── UpscalerHero.astro          — Hero headline + trust labels
+│       ├── UpscalerWorkspace.astro     — Main tool card (all UI states)
+│       ├── UpscalerPromo.astro         — Nudgy CTA card below results
+│       └── BrowserSupportNotice.astro  — Unsupported browser message
 ├── layouts/
-│   └── Base.astro             — HTML shell, meta, fonts
+│   └── Base.astro             — HTML shell, meta, fonts (supports canonicalPath prop)
+├── lib/
+│   └── upscaler/
+│       ├── upscaler.ts        — Main orchestrator (state machine, DOM binding)
+│       ├── upscale.worker.ts  — Web Worker: ONNX init, model load, tiled inference
+│       ├── worker-client.ts   — Typed wrapper for worker communication
+│       ├── image-utils.ts     — Decode, validate, tile, export utilities
+│       ├── comparison-slider.ts — Before/after slider (mouse/touch/keyboard)
+│       ├── capabilities.ts    — WebGPU/Worker/Canvas detection
+│       ├── types.ts           — Shared TypeScript types
+│       └── constants.ts       — Limits, tile sizes, model URL, CDN paths
 ├── pages/
 │   ├── index.astro            — Homepage composition
 │   ├── privacy.astro          — Privacy policy
 │   ├── releases.astro         — Release notes timeline (v0.1.0–v0.2.2)
-│   └── terms.astro            — Terms of use
+│   ├── terms.astro            — Terms of use
+│   └── tools/
+│       └── image-upscaler.astro — AI image upscaler tool
 ├── styles/
 │   └── global.css             — CSS variables, base styles, Tailwind
 public/

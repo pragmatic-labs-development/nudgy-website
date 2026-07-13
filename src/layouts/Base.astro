@@ -4,15 +4,19 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
 }
 
 const {
   title = 'Nudgy: Screenshot Annotations for Vibe Coders',
   description = 'Capture your screen, annotate what matters, paste into Claude, ChatGPT, or Cursor. The fastest way to show AI what you mean. Free Mac app, no account required.',
+  canonicalPath,
 } = Astro.props;
 
 const ogImage = '/assets/og-image.png';
-const canonicalURL = 'https://get-nudged.online';
+const canonicalURL = canonicalPath
+  ? `https://get-nudged.online${canonicalPath}`
+  : 'https://get-nudged.online';
 ---
 
 <!doctype html>

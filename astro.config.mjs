@@ -8,6 +8,12 @@ export default defineConfig({
   site: 'https://get-nudged.online',
   output: 'static',
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['onnxruntime-web'],
+    },
+    worker: {
+      format: 'es',
+    },
+  },
 });

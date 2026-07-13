@@ -1,0 +1,64 @@
+---
+---
+
+<div class="notice" id="browser-support-notice" style="display: none;">
+  <div class="notice-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+  </div>
+  <h3 class="notice-title">Browser not supported</h3>
+  <p class="notice-text" id="unsupported-reason">
+    Your browser does not support WebGPU, which is required for AI image processing.
+  </p>
+  <p class="notice-hint">
+    Please try <strong>Chrome 113+</strong>, <strong>Edge 113+</strong>, or <strong>Safari 18+</strong> on a device with a GPU.
+  </p>
+</div>
+
+<style>
+  .notice {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .notice-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .notice-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .notice-text {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .notice-hint {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .notice-hint strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>

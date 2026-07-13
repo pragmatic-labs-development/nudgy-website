@@ -1,0 +1,108 @@
+---
+---
+
+<section class="hero">
+  <div class="container">
+    <h1 class="headline">Make small images sharp again.</h1>
+    <p class="subheadline">
+      AI-powered 2x upscaling that runs entirely in your browser. No uploads, no accounts, no cost.
+    </p>
+    <div class="trust-labels">
+      <span class="label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        Free
+      </span>
+      <span class="label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        On-device
+      </span>
+      <span class="label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <line x1="19" y1="8" x2="19" y2="14"/>
+          <line x1="22" y1="11" x2="16" y2="11"/>
+        </svg>
+        No account
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: clamp(6rem, 10vw, 9rem) 1.5rem clamp(2rem, 4vw, 3rem);
+    text-align: center;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .headline {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1rem;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .subheadline {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .trust-labels {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+  }
+
+  .label svg {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .trust-labels {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+  }
+</style>
