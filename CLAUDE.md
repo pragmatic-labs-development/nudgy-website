@@ -28,7 +28,7 @@ Core message: Show the thing. Skip the essay. Turn screenshots into useful conte
 
 ## Homepage Section Order (Current)
 
-Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → ScrollingCapture → Features → ShareMechanics → Pricing → Download → FAQ → Footer
+Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → ScrollingCapture → Features → ShareMechanics → BrandMoment → Pricing → Download → FAQ → Footer
 
 ## What Was Done (Sessions 1–3)
 
@@ -75,6 +75,11 @@ Nav → Hero → Workflow → UseCases → PasteIntoAI → Privacy → Scrolling
 - **Footer** (`src/components/Footer.astro`): Added "Release Notes" link to the Product column in the footer nav.
 - **Deployed to production** — pushed directly to `main`, auto-deployed via GitHub Pages.
 
+### Session 6 — BrandMoment placement
+- **Homepage** (`src/pages/index.astro`): Added BrandMoment component to the homepage between ShareMechanics and Pricing. Imported `BrandMoment.astro` and placed it as a brand personality beat ("Tiny legs. Big busywork shredder.") right before the conversion funnel. Rationale: after the feature showcase is complete, the centered minimal text creates an emotional pause before pricing — classic "remind them why they like you" before the money ask.
+- **Files changed:** `src/pages/index.astro` (import + placement)
+- **Deployment status:** Pushed to `main`, will auto-deploy via GitHub Pages.
+
 ## What Still Needs Doing
 
 ### Visual QA — Full section-by-section review
@@ -95,9 +100,6 @@ Most sections have had incremental tweaks but haven't had a dedicated visual QA 
 
 ### Mobile responsiveness
 All sections need mobile/tablet viewport testing. The new sections (ScrollingCapture, PasteIntoAI, ShareMechanics) haven't been tested on mobile.
-
-### BrandMoment placement
-`BrandMoment.astro` exists but is NOT in `index.astro`. Decide where to place it (likely after UseCases or before Download) and add it to the page.
 
 ### Release Notes maintenance
 When new versions of Nudgy ship, add entries to `src/pages/releases.astro`. The page uses a timeline layout — add new `<article class="release">` blocks at the top of the `.timeline` div. Use tags: `<span class="tag new">New</span>`, `<span class="tag fix">Fix</span>`, `<span class="tag improved">Improved</span>`.
@@ -123,7 +125,7 @@ src/
 │   ├── ScrollingCapture.astro — NEW: Scrolling capture use cases (10 chips)
 │   ├── Features.astro         — 6-card feature grid
 │   ├── ShareMechanics.astro   — Sharing/integration capabilities (2x2 grid)
-│   ├── BrandMoment.astro      — Brand personality (not yet in index.astro)
+│   ├── BrandMoment.astro      — Brand personality (between ShareMechanics and Pricing)
 │   ├── Pricing.astro          — 3 tiers with annual/monthly toggle
 │   ├── Download.astro         — CTA card ("Ready when you are.")
 │   ├── FAQ.astro              — 8-question accordion
