@@ -127,17 +127,10 @@
             <span id="result-dimensions"></span>
             <span class="result-dot">&middot;</span>
             <span id="result-time"></span>
+            <span class="result-dot loupe-hint-dot">&middot;</span>
+            <span class="loupe-hint">Hover to inspect pixels</span>
           </div>
           <div class="result-actions">
-            <button class="btn-zoom" id="btn-zoom" type="button" aria-pressed="false">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                <line x1="11" y1="8" x2="11" y2="14"/>
-                <line x1="8" y1="11" x2="14" y2="11"/>
-              </svg>
-              <span id="btn-zoom-label">Zoom 100%</span>
-            </button>
             <button class="btn-download" id="btn-download" type="button">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -670,71 +663,6 @@
     }
   }
 
-  /* Zoomed state: images at native pixel size, scrollable container */
-  .comparison-slider.zoomed {
-    overflow: auto;
-    cursor: grab;
-    max-height: 500px;
-  }
-
-  .comparison-slider.zoomed:active {
-    cursor: grabbing;
-  }
-
-  .comparison-slider.zoomed .comparison-before {
-    width: auto;
-    height: auto;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-  }
-
-  .comparison-slider.zoomed .comparison-after-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    right: auto;
-    bottom: auto;
-  }
-
-  .comparison-slider.zoomed .comparison-after {
-    width: auto;
-    height: auto;
-    object-fit: none;
-  }
-
-  .btn-zoom {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--muted);
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.45rem 0.75rem;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
-  }
-
-  .btn-zoom:hover {
-    color: var(--text);
-    border-color: var(--muted);
-  }
-
-  .btn-zoom[aria-pressed="true"] {
-    color: #fff;
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .btn-zoom:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
   .result-info {
     display: flex;
     align-items: center;
@@ -753,6 +681,18 @@
 
   .result-dot {
     color: #333;
+  }
+
+  .loupe-hint {
+    font-style: italic;
+    color: #444;
+  }
+
+  @media (hover: none) {
+    .loupe-hint,
+    .loupe-hint-dot {
+      display: none;
+    }
   }
 
   .result-actions {

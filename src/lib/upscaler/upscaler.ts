@@ -17,7 +17,6 @@ let workerClient: UpscaleWorkerClient | null = null;
 let cleanupSlider: (() => void) | null = null;
 let objectUrls: string[] = [];
 let selectedScale: 2 | 4 = 2;
-let isZoomed = false;
 let cleanupLoupe: (() => void) | null = null;
 
 // DOM references
@@ -293,7 +292,6 @@ function reset() {
     cleanupLoupe();
     cleanupLoupe = null;
   }
-  isZoomed = false;
   showState('empty');
 }
 
@@ -365,41 +363,6 @@ export function initUpscaler() {
   $('btn-cancel').addEventListener('click', cancelUpscale);
 
   // --- Result state ---
-  $('btn-zoom').addEventListener('click', () => {
-    isZoomed = !isZoomed;
-    const slider = $('comparison-slider');
-    const btn = $('btn-zoom');
-    slider.classList.toggle('zoomed', isZoomed);
-    btn.setAttribute('aria-pressed', String(isZoomed));
-    $('btn-zoom-label').textContent = isZoomed ? 'Fit to view' : 'Zoom 100%';
-
-    if (isZoomed && result) {
-      // Size the after wrapper to match the before image's natural size
-      const beforeImg = $('result-before') as HTMLImageElement;
-      const afterWrapper = $('comparison-after-wrapper') as HTMLElement;
-      const afterImg = $('result-after') as HTMLImageElement;
-
-      // The before image renders at native (upscaled) size in zoomed mode
-      // via image-rendering: pixelated. The after wrapper must match.
-      afterWrapper.style.width = `${beforeImg.naturalWidth}px`;
-      afterWrapper.style.height = `${beforeImg.naturalHeight}px`;
-      afterImg.style.width = `${beforeImg.naturalWidth}px`;
-      afterImg.style.height = `${beforeImg.naturalHeight}px`;
-
-      // Scroll to center
-      slider.scrollLeft = (slider.scrollWidth - slider.clientWidth) / 2;
-      slider.scrollTop = (slider.scrollHeight - slider.clientHeight) / 2;
-    } else {
-      // Reset inline styles
-      const afterWrapper = $('comparison-after-wrapper') as HTMLElement;
-      const afterImg = $('result-after') as HTMLImageElement;
-      afterWrapper.style.width = '';
-      afterWrapper.style.height = '';
-      afterImg.style.width = '';
-      afterImg.style.height = '';
-    }
-  });
-
   $('btn-download').addEventListener('click', downloadResult);
   $('btn-new').addEventListener('click', reset);
 
